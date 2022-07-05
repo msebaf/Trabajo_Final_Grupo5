@@ -116,6 +116,11 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
 
         JTtelefono.setBackground(new java.awt.Color(204, 204, 204));
         JTtelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTtelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTtelefonoFocusLost(evt);
+            }
+        });
 
         jLbNombreGarante.setText("Nombre:");
 
@@ -358,7 +363,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         Inquilino inqui = new Inquilino();
         inqui.setApellido(JTapellido.getText());
         inqui.setApellidoGarante(JTapellido_garante.getText());
-        inqui.setCuit(Integer.parseInt(JTcuit_dni.getText()));
+        inqui.setCuit(Integer.parseInt(JTcuit_predni.getText()+JTcuit_dni.getText()+ JTcuit_postdni.getText()));
         inqui.setDni(Integer.parseInt(JTdni.getText()));
         inqui.setDniGarante(Integer.parseInt(JTdni_garante.getText()));
         inqui.setNombre(JTnombre.getText());
@@ -468,6 +473,22 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             } 
         // TODO add your handling code here:
     }//GEN-LAST:event_JTdni_garanteFocusLost
+
+    private void JTtelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTtelefonoFocusLost
+            if(JTdni.getText().length()==0){
+                JOptionPane.showMessageDialog(this, "Debe ingresar un telefono de contacto");
+                JTdni.requestFocus();
+            }
+            else{
+                try {
+                    int prueba = Integer.parseInt(JTdni.getText());
+                   
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "telefono debe ser un numero");
+                    JTdni.requestFocus();
+                }
+            }// TODO add your handling code here:
+    }//GEN-LAST:event_JTtelefonoFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
