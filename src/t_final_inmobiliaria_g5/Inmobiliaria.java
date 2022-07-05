@@ -10,6 +10,7 @@ import inmo_data.ContratoAlquilerData;
 import inmo_data.Propiedad_Inmueble_Data;
 import java.sql.Connection;
 import java.util.ArrayList;
+import vistas.Menu;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Inmobiliaria {
          Conexion conexion = new Conexion();          
         Connection cn = conexion.getConexion();  
         
-         Propiedad_Inmueble_Data pIm = new Propiedad_Inmueble_Data(conexion);
+       /*  Propiedad_Inmueble_Data pIm = new Propiedad_Inmueble_Data(conexion);
          ContratoAlquilerData cAd = new ContratoAlquilerData(conexion);
         
     /*    Propietario propie = new Propietario();
@@ -45,7 +46,7 @@ public class Inmobiliaria {
             
         }
     
-      */
+    
     
      Propietario propie = new Propietario();
         propie.setDNI(1234);
@@ -68,7 +69,9 @@ public class Inmobiliaria {
         for (ContratoAlquiler contratoAlquiler : propr) {
             System.out.println(contratoAlquiler.getCodContrato());
             
-        }
+        }*/
+       
+       
     }
     
     
