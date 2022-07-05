@@ -9,38 +9,49 @@ import java.util.ArrayList;
 
 /**
  *
- * @author mseba
+ * @author saimon
  */
 public class Inquilino {
     
-    private int idInquilino;
-    private long DNI;
+    private int idInquilino;   
+    private long dni;
     private String apellido;
     private String nombre;
-    private char tipo;
-    private char detalle;
+    private long cuit;
+    private long telefono;  
+    private String trabajo;
+    private String apellidoGarante;
+    private String nombreGarante;
+    private long dniGarante; 
     public ArrayList<Propiedad_Inmueble> inmuebles;
 
-    public Inquilino(int idInquilino, int DNI, String apellido, String nombre, char tipo, char detalle, ArrayList<Propiedad_Inmueble> inmuebles) {
-        this.idInquilino = idInquilino;
-        this.DNI = DNI;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.detalle = detalle;
-        this.inmuebles = inmuebles;
-    }
-
-    public Inquilino(int DNI, String apellido, String nombre, char tipo, char detalle, ArrayList<Propiedad_Inmueble> inmuebles) {
-        this.DNI = DNI;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.detalle = detalle;
-        this.inmuebles = inmuebles;
-    }
-
     public Inquilino() {
+    }
+
+    public Inquilino(int idInquilino, long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante, ArrayList<Propiedad_Inmueble> inmuebles) {
+        this.idInquilino = idInquilino;
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.telefono = telefono;
+        this.trabajo = trabajo;
+        this.apellidoGarante = apellidoGarante;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.inmuebles = inmuebles;
+    }
+
+    public Inquilino(long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante) {
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.telefono = telefono;
+        this.trabajo = trabajo;
+        this.apellidoGarante = apellidoGarante;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
     }
 
     public int getIdInquilino() {
@@ -51,12 +62,12 @@ public class Inquilino {
         this.idInquilino = idInquilino;
     }
 
-    public long getDNI() {
-        return DNI;
+    public long getDni() {
+        return dni;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
+    public void setDni(long dni) {
+        this.dni = dni;
     }
 
     public String getApellido() {
@@ -75,20 +86,52 @@ public class Inquilino {
         this.nombre = nombre;
     }
 
-    public char getTipo() {
-        return tipo;
+    public long getCuit() {
+        return cuit;
     }
 
-    public void setTipo(char tipo) {
-        this.tipo = tipo;
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
     }
 
-    public char getDetalle() {
-        return detalle;
+    public long getTelefono() {
+        return telefono;
     }
 
-    public void setDetalle(char detalle) {
-        this.detalle = detalle;
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getTrabajo() {
+        return trabajo;
+    }
+
+    public void setTrabajo(String trabajo) {
+        this.trabajo = trabajo;
+    }
+
+    public String getApellidoGarante() {
+        return apellidoGarante;
+    }
+
+    public void setApellidoGarante(String apellidoGarante) {
+        this.apellidoGarante = apellidoGarante;
+    }
+
+    public String getNombreGarante() {
+        return nombreGarante;
+    }
+
+    public void setNombreGarante(String nombreGarante) {
+        this.nombreGarante = nombreGarante;
+    }
+
+    public long getDniGarante() {
+        return dniGarante;
+    }
+
+    public void setDniGarante(long dniGarante) {
+        this.dniGarante = dniGarante;
     }
 
     public ArrayList<Propiedad_Inmueble> getInmuebles() {
@@ -98,6 +141,44 @@ public class Inquilino {
     public void setInmuebles(ArrayList<Propiedad_Inmueble> inmuebles) {
         this.inmuebles = inmuebles;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.idInquilino;
+        hash = 17 * hash + (int) (this.dni ^ (this.dni >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Inquilino other = (Inquilino) obj;
+        if (this.idInquilino != other.idInquilino) {
+            return false;
+        }
+        if (this.dni != other.dni) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Inquilino{" + "idInquilino=" + idInquilino + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", telefono=" + telefono + '}';
+    }
+
+      
+   
+   
     
     
     
