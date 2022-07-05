@@ -5,17 +5,24 @@
  */
 package vistas;
 
+import conexion.Conexion;
+import inmo_data.InquilinoData;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import t_final_inmobiliaria_g5.Inquilino;
+
 /**
  *
  * @author mseba
  */
 public class Vista_FormInquilino extends javax.swing.JInternalFrame {
-
+     Conexion conexion;
     /**
      * Creates new form vistas_Form
      */
-    public Vista_FormInquilino() {
+    public Vista_FormInquilino(Conexion conexion) {
         initComponents();
+        this.conexion = conexion;
     }
 
     /**
@@ -30,40 +37,55 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
-        jTextField30 = new javax.swing.JTextField();
+        JTtrabajo = new javax.swing.JTextField();
         jLbNombre4 = new javax.swing.JLabel();
-        jTextField31 = new javax.swing.JTextField();
-        jTextField34 = new javax.swing.JTextField();
+        JTdni = new javax.swing.JTextField();
+        JTnombre = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLbCuit4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField35 = new javax.swing.JTextField();
+        JTcuit_dni = new javax.swing.JTextField();
         jLbDniGarante = new javax.swing.JLabel();
         jLbTelefono4 = new javax.swing.JLabel();
-        jtxtDniGarante = new javax.swing.JTextField();
+        JTdni_garante = new javax.swing.JTextField();
         jLbApellidoGarante = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
-        jtxtApellidoGarante = new javax.swing.JTextField();
+        JTtelefono = new javax.swing.JTextField();
+        JTnombre_garante = new javax.swing.JTextField();
         jLbNombreGarante = new javax.swing.JLabel();
         jLbTrabajo4 = new javax.swing.JLabel();
-        jtxtNombreGarante = new javax.swing.JTextField();
+        JTapellido_garante = new javax.swing.JTextField();
         jLbApellido4 = new javax.swing.JLabel();
         jLbDni4 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        JTapellido = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        JTcuit_postdni = new javax.swing.JTextField();
+        JTcuit_predni = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
 
-        jTextField30.setBackground(new java.awt.Color(204, 204, 204));
+        JTtrabajo.setBackground(new java.awt.Color(204, 204, 204));
+        JTtrabajo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLbNombre4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLbNombre4.setText("Nombre:");
 
-        jTextField31.setBackground(new java.awt.Color(204, 204, 204));
+        JTdni.setBackground(new java.awt.Color(204, 204, 204));
+        JTdni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTdni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTdniFocusLost(evt);
+            }
+        });
+        JTdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTdniActionPerformed(evt);
+            }
+        });
 
-        jTextField34.setBackground(new java.awt.Color(204, 204, 204));
+        JTnombre.setBackground(new java.awt.Color(204, 204, 204));
+        JTnombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLbCuit4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLbCuit4.setText("Cuit:");
@@ -71,16 +93,29 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("GARANTE");
 
-        jTextField35.setBackground(new java.awt.Color(204, 204, 204));
+        JTcuit_dni.setBackground(new java.awt.Color(204, 204, 204));
+        JTcuit_dni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTcuit_dni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTcuit_dniFocusLost(evt);
+            }
+        });
 
         jLbDniGarante.setText("DNI:");
 
         jLbTelefono4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLbTelefono4.setText("Telefono:");
 
+        JTdni_garante.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTdni_garanteFocusLost(evt);
+            }
+        });
+
         jLbApellidoGarante.setText("Apellido: ");
 
-        jTextField29.setBackground(new java.awt.Color(204, 204, 204));
+        JTtelefono.setBackground(new java.awt.Color(204, 204, 204));
+        JTtelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLbNombreGarante.setText("Nombre:");
 
@@ -93,11 +128,48 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jLbDni4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLbDni4.setText("DNI:");
 
-        jTextField32.setBackground(new java.awt.Color(204, 204, 204));
+        JTapellido.setBackground(new java.awt.Color(204, 204, 204));
+        JTapellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("SALIR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        JTcuit_postdni.setBackground(new java.awt.Color(204, 204, 204));
+        JTcuit_postdni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTcuit_postdni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTcuit_postdniFocusLost(evt);
+            }
+        });
+        JTcuit_postdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTcuit_postdniActionPerformed(evt);
+            }
+        });
+
+        JTcuit_predni.setBackground(new java.awt.Color(204, 204, 204));
+        JTcuit_predni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        JTcuit_predni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTcuit_predniFocusLost(evt);
+            }
+        });
+        JTcuit_predni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JTcuit_predniActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,13 +191,18 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                             .addComponent(jLbTrabajo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLbDni4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(JTtrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(JTcuit_predni, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JTcuit_dni, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(JTcuit_postdni, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,10 +217,10 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                                 .addComponent(jLbNombreGarante)))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxtNombreGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtDniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTapellido_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTdni_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtApellidoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(JTnombre_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -152,26 +229,28 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbDni4)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbApellido4)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbNombre4))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLbCuit4))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLbCuit4)
+                    .addComponent(JTcuit_postdni, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTcuit_predni, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTcuit_dni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbTelefono4)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTtrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbTrabajo4))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,17 +258,17 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtDniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTdni_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbDniGarante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtApellidoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTnombre_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLbNombreGarante))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbApellidoGarante)
-                    .addComponent(jtxtNombreGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                    .addComponent(JTapellido_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,15 +342,146 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        Inquilino inqui = new Inquilino();
+        inqui.setApellido(JTapellido.getText());
+        inqui.setApellidoGarante(JTapellido_garante.getText());
+        inqui.setCuit(Integer.parseInt(JTcuit_dni.getText()));
+        inqui.setDni(Integer.parseInt(JTdni.getText()));
+        inqui.setDniGarante(Integer.parseInt(JTdni_garante.getText()));
+        inqui.setNombre(JTnombre.getText());
+        inqui.setNombreGarante(JTnombre_garante.getText());
+        inqui.setTelefono(Long.parseLong(JTtelefono.getText()));
+        inqui.setTrabajo(JTtrabajo.getText());
+        
+        InquilinoData iData = new InquilinoData(conexion);  
+        iData.agregarInquilino(inqui);
+        
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JTcuit_predniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTcuit_predniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTcuit_predniActionPerformed
+
+    private void JTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTdniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTdniActionPerformed
+
+    private void JTdniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTdniFocusLost
+            if(JTdni.getText().length()==0){
+                JOptionPane.showMessageDialog(this, "DNI no puede quedar vacio");
+                JTdni.requestFocus();
+            }
+            else{
+                try {
+                    int prueba = Integer.parseInt(JTdni.getText());
+                    JTcuit_dni.setText(""+prueba);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "DNI debe ser un numero");
+                    JTdni.requestFocus();
+                }
+            }
+    }//GEN-LAST:event_JTdniFocusLost
+
+    private void JTcuit_postdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTcuit_postdniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTcuit_postdniActionPerformed
+
+    private void JTcuit_dniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTcuit_dniFocusLost
+                   if(JTcuit_dni.getText().length()==0){
+                JOptionPane.showMessageDialog(this, "Ningun campo del CUIT no puede quedar vacio");
+                JTcuit_dni.requestFocus();
+            }
+            else{
+                try {
+                    int prueba = Integer.parseInt(JTcuit_dni.getText());
+                    JTdni.setText(""+prueba);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Los campos de CUIT deben ser numeros");
+                    
+                    JTcuit_dni.requestFocus();
+                }
+            }  // TODO add your handling code here:
+    }//GEN-LAST:event_JTcuit_dniFocusLost
+
+    private void JTcuit_predniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTcuit_predniFocusLost
+                    if(JTcuit_predni.getText().length()==0){
+                JOptionPane.showMessageDialog(this, "Ningun campo del CUIT no puede quedar vacio");
+                JTcuit_predni.requestFocus();
+            }
+            else{
+                try {
+                    int prueba = Integer.parseInt(JTcuit_predni.getText());
+                    
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Los campos de CUIT deben ser numeros");
+                    JTcuit_predni.requestFocus();
+                }
+            }         // TODO add your handling code here:
+    }//GEN-LAST:event_JTcuit_predniFocusLost
+
+    private void JTcuit_postdniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTcuit_postdniFocusLost
+                       if(JTcuit_postdni.getText().length()==0){
+                JOptionPane.showMessageDialog(this, "Ningun campo del CUIT no puede quedar vacio");
+                JTcuit_postdni.requestFocus();
+            }
+            else{
+                try {
+                    int prueba = Integer.parseInt(JTcuit_postdni.getText());
+                    
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Los campos de CUIT deben ser numeros");
+                    JTcuit_postdni.requestFocus();
+                }
+            }           // TODO add your handling code here:
+    }//GEN-LAST:event_JTcuit_postdniFocusLost
+
+    private void JTdni_garanteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTdni_garanteFocusLost
+        
+                  if( JTdni_garante.getText().length()==0){
+                JOptionPane.showMessageDialog(this, "El dni del garante no puede quedar vacio");
+                 JTdni_garante.requestFocus();
+            }
+            else{
+                try {
+                    int prueba = Integer.parseInt( JTdni_garante.getText());
+                   
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(this, "Los campos de DNI deben ser numeros");
+                     JTdni_garante.requestFocus();
+                }
+            } 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTdni_garanteFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JTapellido;
+    private javax.swing.JTextField JTapellido_garante;
+    private javax.swing.JTextField JTcuit_dni;
+    private javax.swing.JTextField JTcuit_postdni;
+    private javax.swing.JTextField JTcuit_predni;
+    private javax.swing.JTextField JTdni;
+    private javax.swing.JTextField JTdni_garante;
+    private javax.swing.JTextField JTnombre;
+    private javax.swing.JTextField JTnombre_garante;
+    private javax.swing.JTextField JTtelefono;
+    private javax.swing.JTextField JTtrabajo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -291,14 +501,5 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jtxtApellidoGarante;
-    private javax.swing.JTextField jtxtDniGarante;
-    private javax.swing.JTextField jtxtNombreGarante;
     // End of variables declaration//GEN-END:variables
 }

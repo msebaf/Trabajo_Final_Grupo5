@@ -5,17 +5,22 @@
  */
 package vistas;
 
+import conexion.Conexion;
+import java.sql.Connection;
+
 /**
  *
  * @author mseba
  */
 public class Menu extends javax.swing.JFrame {
-
+         Conexion conexion;
     /**
      * Creates new form menu1
      */
     public Menu() {
         initComponents();
+        conexion = new Conexion();          
+        Connection cn = conexion.getConexion();  
     }
 
     /**
@@ -141,7 +146,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClienteActionPerformed
 
-        Vista_FormInquilino registrarCliente = new Vista_FormInquilino();
+        Vista_FormInquilino registrarCliente = new Vista_FormInquilino(conexion);
 
         registrarCliente.setVisible(true);
         escritorio.add(registrarCliente);

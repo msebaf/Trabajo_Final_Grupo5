@@ -30,7 +30,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="525" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -86,13 +86,19 @@
                                       <Component id="jLbDni4" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTextField30" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
-                                      <Component id="jTextField31" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
-                                      <Component id="jTextField32" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
-                                      <Component id="jTextField34" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
-                                      <Component id="jTextField35" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
-                                      <Component id="jTextField29" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="JTtrabajo" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
+                                      <Component id="JTdni" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
+                                      <Component id="JTapellido" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
+                                      <Component id="JTnombre" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
+                                      <Component id="JTtelefono" alignment="1" min="-2" pref="252" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="JTcuit_predni" min="-2" pref="47" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="JTcuit_dni" min="-2" pref="129" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="JTcuit_postdni" min="-2" pref="40" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -112,10 +118,10 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jtxtNombreGarante" min="-2" pref="250" max="-2" attributes="0"/>
-                                      <Component id="jtxtDniGarante" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="JTapellido_garante" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="JTdni_garante" min="-2" pref="250" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" pref="215" max="-2" attributes="0"/>
-                                      <Component id="jtxtApellidoGarante" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                      <Component id="JTnombre_garante" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -129,31 +135,33 @@
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLbDni4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField31" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JTdni" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLbApellido4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField32" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JTapellido" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField34" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="JTnombre" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLbNombre4" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField35" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLbCuit4" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLbCuit4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JTcuit_postdni" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="JTcuit_predni" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="JTcuit_dni" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLbTelefono4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField29" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JTtelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField30" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="JTtrabajo" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLbTrabajo4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -162,20 +170,20 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jtxtDniGarante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="JTdni_garante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jLbDniGarante" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jtxtApellidoGarante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="JTnombre_garante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jLbNombreGarante" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLbApellidoGarante" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtxtNombreGarante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="JTapellido_garante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton1" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
@@ -186,11 +194,12 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField30">
+                <Component class="javax.swing.JTextField" name="JTtrabajo">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLbNombre4">
@@ -201,18 +210,24 @@
                     <Property name="text" type="java.lang.String" value="Nombre:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField31">
+                <Component class="javax.swing.JTextField" name="JTdni">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTdniFocusLost"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTdniActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField34">
+                <Component class="javax.swing.JTextField" name="JTnombre">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator1">
@@ -231,12 +246,16 @@
                     <Property name="text" type="java.lang.String" value="GARANTE"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField35">
+                <Component class="javax.swing.JTextField" name="JTcuit_dni">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTcuit_dniFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLbDniGarante">
                   <Properties>
@@ -251,21 +270,25 @@
                     <Property name="text" type="java.lang.String" value="Telefono:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jtxtDniGarante">
+                <Component class="javax.swing.JTextField" name="JTdni_garante">
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTdni_garanteFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLbApellidoGarante">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Apellido: "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField29">
+                <Component class="javax.swing.JTextField" name="JTtelefono">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jtxtApellidoGarante">
+                <Component class="javax.swing.JTextField" name="JTnombre_garante">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLbNombreGarante">
                   <Properties>
@@ -280,7 +303,7 @@
                     <Property name="text" type="java.lang.String" value="Trabajo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jtxtNombreGarante">
+                <Component class="javax.swing.JTextField" name="JTapellido_garante">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLbApellido4">
                   <Properties>
@@ -298,22 +321,53 @@
                     <Property name="text" type="java.lang.String" value="DNI:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField32">
+                <Component class="javax.swing.JTextField" name="JTapellido">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="GUARDAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="SALIR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="JTcuit_postdni">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTcuit_postdniFocusLost"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTcuit_postdniActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JTextField" name="JTcuit_predni">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="JTcuit_predniFocusLost"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JTcuit_predniActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
