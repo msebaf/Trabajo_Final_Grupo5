@@ -13,7 +13,7 @@ public class Propiedad_Inmueble {
     
   private  int idPropiedad;
   private String codigo;
-   public Inquilino inquilino;
+  
    public Propietario propietario;
   private String zona;
   private  String direccion;
@@ -22,22 +22,22 @@ public class Propiedad_Inmueble {
 
    
   private double precio;
-  boolean disponible;
 
-    public Propiedad_Inmueble(/*int idPropiedad,*/ Inquilino inquilino, Propietario propietario, String zona, String direccion, double superficie, String tipo, double precio, boolean disponible) {
+
+    public Propiedad_Inmueble(int idPropiedad, Propietario propietario, String zona, String direccion, double superficie, String tipo, double precio) {
         //this.idPropiedad = idPropiedad;
-        this.inquilino = inquilino;
+        
         this.propietario = propietario;
         this.zona = zona;
         this.direccion = direccion;
         this.superficie = superficie;
         this.tipo = tipo;
         this.precio = precio;
-        this.disponible = disponible;
+      
         this.codigo = tipo+idPropiedad;
     }
 
-    public Propiedad_Inmueble(Propietario propietario, String zona, String direccion, double superficie, String tipo, double precio, boolean disponible) {
+    public Propiedad_Inmueble(Propietario propietario, String zona, String direccion, double superficie, String tipo, double precio) {
        
         this.propietario = propietario;
         this.zona = zona;
@@ -45,7 +45,7 @@ public class Propiedad_Inmueble {
         this.superficie = superficie;
         this.tipo = tipo;
         this.precio = precio;
-        this.disponible = disponible;
+       
     }
 
     public Propiedad_Inmueble() {
@@ -67,13 +67,7 @@ public class Propiedad_Inmueble {
     }
 
     
-    public Inquilino getInquilino() {
-        return inquilino;
-    }
 
-    public void setInquilino(Inquilino inquilino) {
-        this.inquilino = inquilino;
-    }
 
     public Propietario getPropietario() {
         return propietario;
@@ -122,14 +116,7 @@ public class Propiedad_Inmueble {
         this.precio = precio;
     }
 
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
-    }
-  
+   
 
    
 }

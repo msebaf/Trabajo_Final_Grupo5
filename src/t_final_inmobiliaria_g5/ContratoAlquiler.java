@@ -19,7 +19,7 @@ public class ContratoAlquiler {
     public Inquilino inquilino;
     private LocalDate fecha_Inicio;
     private LocalDate fecha_Final;
-    boolean vigente;          
+        
     
     public ContratoAlquiler(String codContrato, String vendedor, Propiedad_Inmueble propiedad, Inquilino inquilino, LocalDate fecha_Inicio, LocalDate fecha_Final) {
         this.codContrato = codContrato;
@@ -28,7 +28,7 @@ public class ContratoAlquiler {
         this.inquilino = inquilino;
         this.fecha_Inicio = fecha_Inicio;
        this.fecha_Final = fecha_Final;
-        this.vigente = (LocalDate.now().isBefore(this.fecha_Final)||LocalDate.now()==this.fecha_Final );  
+      
     }
 
     public ContratoAlquiler(String vendedor, Propiedad_Inmueble propiedad, Inquilino inquilino/*, LocalDate fecha_Inicio, LocalDate fecha_Final*/) {
@@ -37,7 +37,7 @@ public class ContratoAlquiler {
         this.inquilino = inquilino;
         this.fecha_Inicio = fecha_Inicio;
         this.fecha_Final = fecha_Final;
-        this.vigente =  (LocalDate.now().isBefore(this.fecha_Final)||LocalDate.now()==this.fecha_Final );  
+    
     }
 
     public ContratoAlquiler() {
@@ -99,14 +99,7 @@ public class ContratoAlquiler {
         this.idContrato = idContrato;
     }
 
-    public boolean isVigente() {
-        return vigente;
-    }
-
-    public void setVigente(boolean vigente) {
-        this.vigente = vigente;
-    }
-
+   
    
     
     
