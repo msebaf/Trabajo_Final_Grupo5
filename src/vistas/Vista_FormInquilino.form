@@ -148,11 +148,13 @@
                               <Component id="jLbNombre4" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLbCuit4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="JTcuit_postdni" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="JTcuit_predni" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="JTcuit_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLbCuit4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JTcuit_dni" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -379,8 +381,8 @@
         <Container class="javax.swing.JPanel" name="jPanel2">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Modificar Cliente">
-                <Property name="tabTitle" type="java.lang.String" value="Modificar Cliente"/>
+              <JTabbedPaneConstraints tabName="Buscar Cliente">
+                <Property name="tabTitle" type="java.lang.String" value="Buscar Cliente"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -401,8 +403,8 @@
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Buscar Cliente">
-                <Property name="tabTitle" type="java.lang.String" value="Buscar Cliente"/>
+              <JTabbedPaneConstraints tabName="Modificar Cliente">
+                <Property name="tabTitle" type="java.lang.String" value="Modificar Cliente"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

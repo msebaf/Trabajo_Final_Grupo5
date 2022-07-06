@@ -86,7 +86,7 @@ public class Propiedad_Inmueble_Data {
         }
         
     }
-        
+      /*  
         public ArrayList<Propiedad_Inmueble> buscarInmDisponibles(){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
             
@@ -115,7 +115,7 @@ public class Propiedad_Inmueble_Data {
             
             
             return disponibles;
-        }
+        }*/
         
         public ArrayList<Propiedad_Inmueble> buscarInmPorCaract(String uso, String zona, String supMinima, String precioMaximo){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
