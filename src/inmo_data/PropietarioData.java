@@ -173,7 +173,7 @@ public class PropietarioData {
     
     
         
-// BORRAR
+// BORRAR  // NO HACER ESTE METODOD
     public void borrarPropietario(Propietario propietario){
         
     }        
@@ -187,7 +187,7 @@ public class PropietarioData {
         
         
         
-        
+        // NI ESTE
 public void borrarPropiedad(Propietario propietario){
         
     }            
