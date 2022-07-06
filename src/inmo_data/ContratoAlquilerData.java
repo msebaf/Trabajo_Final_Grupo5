@@ -110,7 +110,7 @@ public class ContratoAlquilerData {
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
-                 contrato.setVigente(rs.getBoolean("vigente"));
+              
                  contratos.add(contrato);
             }
               } catch (SQLException ex) {
@@ -142,7 +142,7 @@ public class ContratoAlquilerData {
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
-                 contrato.setVigente(rs.getBoolean("vigente"));
+                
                  if(contrato.getPropiedad().getPropietario().getIdPropietario()==idPropietario){
                  contratos.add(contrato);
                  }
@@ -178,7 +178,7 @@ public class ContratoAlquilerData {
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
-                 contrato.setVigente(rs.getBoolean("vigente"));
+            
                  if(contrato.getInquilino().getIdInquilino()==idInquilino){
                  contratos.add(contrato);
                  }
@@ -212,7 +212,7 @@ public class ContratoAlquilerData {
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
-                 contrato.setVigente(rs.getBoolean("vigente"));
+                 
                  contratos.add(contrato);
             }
               } catch (SQLException ex) {
@@ -249,7 +249,7 @@ public class ContratoAlquilerData {
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
-                 contrato.setVigente(rs.getBoolean("vigente"));
+               
                  contratos.add(contrato);
             }
               } catch (SQLException ex) {
@@ -281,7 +281,7 @@ public class ContratoAlquilerData {
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
-                 contrato.setVigente(rs.getBoolean("vigente"));
+                 
                  contratos.add(contrato);
             }
               } catch (SQLException ex) {

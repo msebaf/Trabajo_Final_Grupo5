@@ -97,7 +97,7 @@ public class Propiedad_Inmueble_Data {
             while(rs.next()){
                 Propiedad_Inmueble prop = new Propiedad_Inmueble();
                 prop.setDireccion(rs.getString("direccion"));
-                prop.setDisponible(rs.getBoolean("disponible"));
+              
                 prop.setIdPropiedad(rs.getInt("idPropiedad"));
                 prop.setPrecio(rs.getDouble("precio"));
                // prop.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
@@ -137,7 +137,7 @@ public class Propiedad_Inmueble_Data {
             while(rs.next()){
                 Propiedad_Inmueble prop = new Propiedad_Inmueble();
                 prop.setDireccion(rs.getString("direccion"));
-                prop.setDisponible(rs.getBoolean("disponible"));
+               
                 prop.setIdPropiedad(rs.getInt("idPropiedad"));
                 prop.setPrecio(rs.getDouble("precio"));
                // prop.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
@@ -167,7 +167,7 @@ public class Propiedad_Inmueble_Data {
             while(rs.next()){
                
                 inm.setDireccion(rs.getString("direccion"));
-                inm.setDisponible(rs.getBoolean("disponible"));
+                
                 inm.setIdPropiedad(rs.getInt("idPropiedad"));
                 inm.setPrecio(rs.getDouble("precio"));
                // inm.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
