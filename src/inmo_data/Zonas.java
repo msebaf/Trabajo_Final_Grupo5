@@ -10,5 +10,5 @@ package inmo_data;
  * @author mseba
  */
 public class Zonas {
-    
+    public enum zonas{CENTRO, NORTE,SUR, ESTE, OESTE};
 }

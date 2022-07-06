@@ -104,6 +104,9 @@
               <Image iconType="3" name="/image/Home_22970.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbInmuebleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbCliente">
           <Properties>
@@ -121,6 +124,9 @@
               <Image iconType="3" name="/image/businessman_man_person_people_2842.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbCintrato">
           <Properties>

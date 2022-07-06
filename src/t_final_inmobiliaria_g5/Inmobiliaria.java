@@ -26,19 +26,19 @@ public class Inmobiliaria {
          Conexion conexion = new Conexion();          
         Connection cn = conexion.getConexion();  
         
-       /*  Propiedad_Inmueble_Data pIm = new Propiedad_Inmueble_Data(conexion);
+         Propiedad_Inmueble_Data pIm = new Propiedad_Inmueble_Data(conexion);
          ContratoAlquilerData cAd = new ContratoAlquilerData(conexion);
+        //
+      Propietario propie = new Propietario();
+       propie.setDNI(1234);
         
-    /*    Propietario propie = new Propietario();
-        propie.setDNI(1234);
-        
-        Propiedad_Inmueble prop = new Propiedad_Inmueble(propie, "Sur","Calle algo", 43.56, "V", 567.56,true);
+        Propiedad_Inmueble prop = new Propiedad_Inmueble(propie, "Sur","Calle algo", 43.56, "V", 567.56);
         
      
         pIm.cargarInmueble(prop, 1234);
 
     
-        ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
+    /*   ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
                disponibles = pIm.buscarInmPorCaract("V", "SUR", "1", "800");
                
                for (Propiedad_Inmueble disponible : disponibles) {

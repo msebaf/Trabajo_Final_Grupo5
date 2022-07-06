@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import t_final_inmobiliaria_g5.Propiedad_Inmueble;
+import vistas.Vista_FormPropiedad;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Propiedad_Inmueble_Data {
         con = conexion.getConexion();
     }
     
-    public void cargarInmueble(Propiedad_Inmueble propiedad, long dniPropietario){
+    public void cargarInmueble(Propiedad_Inmueble propiedad, int dniPropietario){
         boolean existePropietario=false;
         String sql;
         int idProp=0;
@@ -47,6 +48,7 @@ public class Propiedad_Inmueble_Data {
               idProp = re.getInt("idPropietario");
           existePropietario= true;
           }else{
+             
                JOptionPane.showMessageDialog(null, "El propietario no se encuentra en la base de datos. Debe Cargar el propietario");
           }
         }catch(SQLException ex){
@@ -54,7 +56,7 @@ public class Propiedad_Inmueble_Data {
         }
         
         if(existePropietario){
-       sql = "INSERT INTO propiedad_inmueble (direccion, zona, tipo, superficie, precio, idPropietario, disponible)  VALUES (?, ?, ?, ?, ?,?,?)";
+       sql = "INSERT INTO propiedad_inmueble (direccion, zona, tipo, superficie, precio, idPropietario )  VALUES (?, ?, ?, ?,?,?)";
         try {
           
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -63,8 +65,8 @@ public class Propiedad_Inmueble_Data {
             ps.setString(3, propiedad.getTipo());
             ps.setDouble(4, propiedad.getSuperficie());
             ps.setDouble(5, propiedad.getPrecio());
-            ps.setLong(6, idProp);
-            ps.setBoolean(7, true);
+            ps.setInt(6, idProp);
+          
            ps.executeUpdate();
            ResultSet rs = ps.getGeneratedKeys();
            if(rs.next()){
@@ -145,7 +147,7 @@ public class Propiedad_Inmueble_Data {
                 prop.setTipo(rs.getString("tipo"));
                 prop.setZona(rs.getString("zona"));
                 prop.setCodigo(rs.getString("codigo"));
-                disponibles.add(prop);
+          
             }
             ps.close();
         } catch (SQLException ex) {

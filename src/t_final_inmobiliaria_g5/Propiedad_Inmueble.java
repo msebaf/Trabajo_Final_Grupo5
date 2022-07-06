@@ -34,7 +34,7 @@ public class Propiedad_Inmueble {
         this.tipo = tipo;
         this.precio = precio;
       
-        this.codigo = tipo+idPropiedad;
+        this.codigo = tipo+propietario.getIdPropietario();
     }
 
     public Propiedad_Inmueble(Propietario propietario, String zona, String direccion, double superficie, String tipo, double precio) {
@@ -50,6 +50,7 @@ public class Propiedad_Inmueble {
 
     public Propiedad_Inmueble() {
     }
+
 
     public int getIdPropiedad() {
         return idPropiedad;

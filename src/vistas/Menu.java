@@ -52,6 +52,11 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jbInmueble.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Home_22970.png"))); // NOI18N
+        jbInmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbInmuebleActionPerformed(evt);
+            }
+        });
 
         jbCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Add_User-80_icon-icons.com_57380.png"))); // NOI18N
         jbCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +66,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/businessman_man_person_people_2842.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jbCintrato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/home_contract_sale_icon_208096 (1).png"))); // NOI18N
         jbCintrato.addActionListener(new java.awt.event.ActionListener() {
@@ -161,9 +171,29 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbClienteActionPerformed
 
+    
     private void jbCintratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCintratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbCintratoActionPerformed
+
+    private void jbInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInmuebleActionPerformed
+          
+            Vista_FormPropiedad prop = new Vista_FormPropiedad(conexion);
+        prop.setVisible(true);
+        escritorio.add(prop);
+        escritorio.repaint();
+        escritorio.moveToFront(prop);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbInmuebleActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Vista_FormPropietario propV = new Vista_FormPropietario(conexion);
+        propV.setVisible(true);
+        escritorio.add(propV);
+        escritorio.repaint();
+        escritorio.moveToFront(propV);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
