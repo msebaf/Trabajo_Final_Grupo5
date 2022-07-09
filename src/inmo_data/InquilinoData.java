@@ -112,6 +112,13 @@ public class InquilinoData {
             inquilino.setDni(res.getInt("dni"));
             inquilino.setApellido(res.getString("apellido"));
             inquilino.setApellido(res.getString("nombre"));
+            inquilino.setCuit(res.getInt("cuit"));
+            inquilino.setTelefono(res.getInt("telefono"));
+            inquilino.setTrabajo(res.getString("trabajo"));            
+            inquilino.setApellidoGarante(res.getString("apellidoGarante"));
+            inquilino.setNombreGarante(res.getString("nombreGarante"));
+            inquilino.setDniGarante(res.getInt("dniGarante"));
+            
             
             //ver los demas atributos
            }
@@ -156,19 +163,24 @@ public class InquilinoData {
        return modificado;
    }
    
-  public List<Propiedad_Inmueble> obtenerInmuebles(int idInquilino) {
+  public List<Propiedad_Inmueble> obtenerInmuebles(Inquilino inquilino) {
+         int idInq = inquilino.getIdInquilino();
          
         ArrayList<Propiedad_Inmueble> pInmuebles = new ArrayList<Propiedad_Inmueble>();
 
         try {
           
-            String sql = "SELECT * FROM propiedad_inmueble WHERE idInquilino = ?";
+            //String sql = "SELECT * FROM contratoalquiler WHERE idInquilino = ?";
+            String sql="SELECT* FROM contratoalquiler, propiedad_inmueble WHERE (contratoalquiler.idPropiedad=propiedad_inmueble.idPropiedad) AND (contratoalquiler.idInquilino ="+idInq+")";
             PreparedStatement pstm = cn.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             Propiedad_Inmueble propiedad;
             while(rs.next()){
                 propiedad = new Propiedad_Inmueble(); 
+                propiedad.setCodigo(rs.getInt("codContrato")+"");
                 propiedad.setIdPropiedad(rs.getInt("idPropiedad"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                 propiedad.setDireccion(rs.getString("tipo"));
             }
           
       } catch (SQLException e) {

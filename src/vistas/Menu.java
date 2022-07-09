@@ -178,7 +178,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInmuebleActionPerformed
           
-            Vista_FormPropiedad prop = new Vista_FormPropiedad(conexion);
+        Vista_FormPropiedad prop = new Vista_FormPropiedad(conexion);
         prop.setVisible(true);
         escritorio.add(prop);
         escritorio.repaint();
@@ -243,3 +243,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jbInmueble;
     // End of variables declaration//GEN-END:variables
 }
+
+

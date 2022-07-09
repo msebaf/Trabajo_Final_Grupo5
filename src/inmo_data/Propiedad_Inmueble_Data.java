@@ -36,7 +36,7 @@ public class Propiedad_Inmueble_Data {
         boolean existePropietario=false;
         String sql;
         int idProp=0;
-        String generadorCodigo = propiedad.getTipo();
+        String generadorCodigo = propiedad.getTipo().substring(0,2);
          
           
            
@@ -147,7 +147,7 @@ public class Propiedad_Inmueble_Data {
                 prop.setTipo(rs.getString("tipo"));
                 prop.setZona(rs.getString("zona"));
                 prop.setCodigo(rs.getString("codigo"));
-          
+             disponibles.add(prop);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -162,7 +162,7 @@ public class Propiedad_Inmueble_Data {
         public Propiedad_Inmueble buscarInmPorId(int id){
             Propiedad_Inmueble inm = new Propiedad_Inmueble();
             
-             String sql = "SELECT * FROM propiedad_inmueble WHERE idPropiedad = "+id; ;
+             String sql = "SELECT * FROM propiedad_inmueble WHERE idPropiedad = "+id;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -177,6 +177,38 @@ public class Propiedad_Inmueble_Data {
                 inm.setTipo(rs.getString("tipo"));
                 inm.setZona(rs.getString("zona"));
                 inm.setCodigo(rs.getString("codigo"));
+                
+            }
+            
+            ps.close();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+            
+             return inm;
+           
+        }
+        
+         public Propiedad_Inmueble buscarInmPorCodigo(String codigo){
+            Propiedad_Inmueble inm = new Propiedad_Inmueble();
+            
+             String sql = "SELECT * FROM propiedad_inmueble WHERE codigo = \""+codigo+ "\"";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               
+                inm.setDireccion(rs.getString("direccion"));
+                
+                inm.setIdPropiedad(rs.getInt("idPropiedad"));
+                inm.setPrecio(rs.getDouble("precio"));
+               // inm.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
+                inm.setSuperficie(rs.getDouble("superficie"));
+                inm.setTipo(rs.getString("tipo"));
+                inm.setZona(rs.getString("zona"));
+              
                 
             }
             

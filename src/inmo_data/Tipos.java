@@ -10,5 +10,5 @@ package inmo_data;
  * @author mseba
  */
 public class Tipos {
-    public enum tipos { DEPARTAMENTO, CASA, COMERCIAL};
+    public static enum tipos { DEPARTAMENTO, CASA, COMERCIAL};
 }

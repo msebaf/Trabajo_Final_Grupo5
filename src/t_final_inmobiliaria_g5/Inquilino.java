@@ -54,6 +54,20 @@ public class Inquilino {
         this.dniGarante = dniGarante;
     }
 
+    public Inquilino(int idInquilino, long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante) {
+        this.idInquilino = idInquilino;
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.telefono = telefono;
+        this.trabajo = trabajo;
+        this.apellidoGarante = apellidoGarante;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+    }
+    
+
     public int getIdInquilino() {
         return idInquilino;
     }
@@ -173,7 +187,7 @@ public class Inquilino {
 
     @Override
     public String toString() {
-        return "Inquilino{" + "idInquilino=" + idInquilino + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", telefono=" + telefono + '}';
+        return idInquilino + "," + dni + "," + apellido + "," + nombre;
     }
 
       
