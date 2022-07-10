@@ -71,22 +71,73 @@ public class ContratoAlquilerData {
        
    }
    
-          public void rescindirContrato(String codigoCont){
-            LocalDate date = LocalDate.of(2000, 01, 01);
+          public void rescindirContrato(ContratoAlquiler contrato){
+            LocalDate date = LocalDate.now().minusDays(1);
+           
            
             Date fFinal = Date.valueOf(date);
-            codigoCont.toUpperCase();
-            String sql ="UPDATE `contratoalquiler` SET `fecha_Final` = '1955-01-01', `vigente` = '0' WHERE codContrato =\""+codigoCont+"\"";
+              System.out.println(fFinal.toString());
+            
+            String sql ="UPDATE `contratoalquiler` SET `fecha_Final` =  \""+ fFinal.toString() +"\" WHERE codContrato =\""+contrato.getCodContrato()+"\"";
             PreparedStatement ps;
           try {
               ps = con.prepareStatement(sql);
               ps.executeUpdate();
+              JOptionPane.showMessageDialog(null, "El contrato "+ contrato.getCodContrato()+" se ha rescindido con exito");
           } catch (SQLException ex) {
               Logger.getLogger(ContratoAlquilerData.class.getName()).log(Level.SEVERE, null, ex);
           }
             
           }
           
+          public void renovarContrato(ContratoAlquiler contrato, LocalDate nuevoFinal){
+              LocalDate fianlAnt = contrato.getFecha_Final();
+              if(fianlAnt.isAfter(nuevoFinal) || fianlAnt.isEqual(nuevoFinal)){
+                  JOptionPane.showMessageDialog(null, "La nueva fecha debe ser posterior a la fecha final vigente");
+              }
+              else{
+              Date fFinal = Date.valueOf(nuevoFinal);
+            
+            String sql ="UPDATE `contratoalquiler` SET `fecha_Final` =  \""+ fFinal.toString() +"\" WHERE codContrato =\""+contrato.getCodContrato()+"\"";
+            PreparedStatement ps;
+          try {
+              ps = con.prepareStatement(sql);
+              ps.executeUpdate();
+              JOptionPane.showMessageDialog(null, "El contrato "+ contrato.getCodContrato()+" se ha rescindido con exito");
+          } catch (SQLException ex) {
+              Logger.getLogger(ContratoAlquilerData.class.getName()).log(Level.SEVERE, null, ex);
+          }
+              }
+          }
+          public ContratoAlquiler buscarContrato(String codContrato){
+              ContratoAlquiler contrato = new ContratoAlquiler();
+               Conexion conexion = new Conexion();   
+              Propiedad_Inmueble_Data cn = new Propiedad_Inmueble_Data(conexion);
+              InquilinoData inq = new InquilinoData(conexion);
+              String sql = "SELECT * FROM `contratoalquiler` WHERE codContrato = \""+codContrato.toUpperCase()+"\"";
+              try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+          
+                contrato.setCodContrato(rs.getString("codContrato"));
+                contrato.setInquilino(inq.buscarInquilino(rs.getLong("idInquilino"))); 
+                contrato.setPropiedad(cn.buscarInmPorId(rs.getInt("idPropiedad")));
+                contrato.setVendedor(rs.getString("vendedor"));
+                contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
+                 contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
+                 contrato.setIdContrato(rs.getInt("idContrato"));
+              
+                
+            }
+              } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+              
+              return contrato;
+              
+          }
+           
           
           
            public ArrayList mostrarContratos(){

@@ -12,6 +12,7 @@ import inmo_data.ContratoAlquilerData;
 import inmo_data.InquilinoData;
 import inmo_data.Propiedad_Inmueble_Data;
 import inmo_data.PropietarioData;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -90,7 +91,15 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        JTcodRes = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        JTcodB = new javax.swing.JTextField();
+        JCfin = new com.toedter.calendar.JDateChooser();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
 
         jLabel1.setText("Vendedor");
@@ -235,28 +244,95 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Subir Contrato", jPanel1);
 
+        jLabel9.setText("Codigo de Contrato");
+
+        jButton5.setText("Rescindir");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(JTcodRes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel9)
+                .addGap(14, 14, 14)
+                .addComponent(JTcodRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButton5)
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Rescindir Contrato", jPanel2);
+
+        jLabel10.setText("Codigo Contrato");
+
+        jButton6.setText("Renovar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Salir");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(JTcodB, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jButton7))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(JCfin, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(JTcodB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(JCfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(jButton6)
+                .addGap(39, 39, 39)
+                .addComponent(jButton7)
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Renovar Contrato", jPanel3);
@@ -316,11 +392,13 @@ LocalDate localInicio = instant
     Date fin = JDfinal.getDate();
 ZoneId defaultZoneId2 = ZoneId.systemDefault();
 Instant instant2 = fin.toInstant();
-LocalDate localFinal = instant
+LocalDate localFinal = instant2
     .atZone(defaultZoneId).toLocalDate();
        
         ContratoAlquiler nuevoContrato = new ContratoAlquiler(JTvendedor.getText(),(Propiedad_Inmueble) JCpropiedades.getSelectedItem(), (Inquilino) JCinquilinos.getSelectedItem(), localInicio, localFinal);   
          ContratoAlquilerData coAlData = new ContratoAlquilerData(conexion);
+         System.out.println(nuevoContrato.getFecha_Inicio());
+         System.out.println(nuevoContrato.getFecha_Final());
          coAlData.firmarContrato(nuevoContrato);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -328,20 +406,47 @@ LocalDate localFinal = instant
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+            ContratoAlquilerData caData = new ContratoAlquilerData(conexion);
+             ContratoAlquiler cont =  caData.buscarContrato(JTcodRes.getText());
+             caData.rescindirContrato(cont);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+         ContratoAlquilerData caData = new ContratoAlquilerData(conexion);
+         ContratoAlquiler cont =  caData.buscarContrato(JTcodB.getText());
+          Date nuFinal = JCfin.getDate();
+          ZoneId defaultZoneId = ZoneId.systemDefault();
+          Instant instant = nuFinal.toInstant();
+          LocalDate localFinal = instant
+                        .atZone(defaultZoneId).toLocalDate();
+         caData.renovarContrato(cont, localFinal);
+         
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JCbusInqu;
+    private com.toedter.calendar.JDateChooser JCfin;
     private javax.swing.JComboBox<Inquilino> JCinquilinos;
     private javax.swing.JComboBox<Propiedad_Inmueble> JCpropiedades;
     private com.toedter.calendar.JDateChooser JDfinal;
     private com.toedter.calendar.JDateChooser JDinicio;
+    private javax.swing.JTextField JTcodB;
     private javax.swing.JTextField JTcodBusc;
+    private javax.swing.JTextField JTcodRes;
     private javax.swing.JTextField JTvendedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -349,6 +454,7 @@ LocalDate localFinal = instant
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
