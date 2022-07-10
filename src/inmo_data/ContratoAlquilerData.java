@@ -47,7 +47,7 @@ public class ContratoAlquilerData {
        String sql = "INSERT INTO `contratoalquiler`(`vendedor`, `idPropiedad`, `idInquilino`, `fecha_Inicio`, `fecha_Final`) VALUES (?,?,?,?,?)";
           try {
               PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-              ps.setString(1, "Jhony");
+              ps.setString(1, contrato.getVendedor());
               ps.setInt(2, contrato.getPropiedad().getIdPropiedad());
               ps.setInt(3, contrato.getInquilino().getIdInquilino());
               ps.setDate(4, inicio);
