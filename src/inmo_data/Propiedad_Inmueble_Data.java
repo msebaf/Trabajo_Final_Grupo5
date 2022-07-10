@@ -88,11 +88,11 @@ public class Propiedad_Inmueble_Data {
         }
         
     }
-      /*  
-        public ArrayList<Propiedad_Inmueble> buscarInmDisponibles(){
+      
+        public ArrayList<Propiedad_Inmueble> buscarInmDisponibles(PropietarioData pro){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
-            
-             String sql = "SELECT * FROM propiedad_inmueble WHERE disponible = true  " ;
+          
+             String sql = "SELECT * FROM propiedad_inmueble WHERE vigente = 1  " ;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -102,7 +102,7 @@ public class Propiedad_Inmueble_Data {
               
                 prop.setIdPropiedad(rs.getInt("idPropiedad"));
                 prop.setPrecio(rs.getDouble("precio"));
-               // prop.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
+                prop.setPropietario(pro.buscarPropietario(rs.getInt("idPropietario")));
                 prop.setSuperficie(rs.getDouble("superficie"));
                 prop.setTipo(rs.getString("tipo"));
                 prop.setZona(rs.getString("zona"));
@@ -117,7 +117,7 @@ public class Propiedad_Inmueble_Data {
             
             
             return disponibles;
-        }*/
+        }
         
         public ArrayList<Propiedad_Inmueble> buscarInmPorCaract(String uso, String zona, String supMinima, String precioMaximo){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
@@ -132,7 +132,7 @@ public class Propiedad_Inmueble_Data {
                 precioMaximo ="999999999999999999999999999";
             }
             
-             String sql = "SELECT * FROM propiedad_inmueble WHERE zona = \""+zona+"\" AND tipo = \""+uso+"\" AND superficie > "+supMinima+ " AND precio < "+ precioMaximo ;
+             String sql = "SELECT * FROM propiedad_inmueble WHERE zona = \""+zona+"\" AND tipo = \""+uso+"\" AND superficie > "+supMinima+ " AND precio < "+ precioMaximo + " AND vigente = true" ;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -191,7 +191,39 @@ public class Propiedad_Inmueble_Data {
            
         }
         
-         public Propiedad_Inmueble buscarInmPorCodigo(String codigo){
+         public Propiedad_Inmueble buscarInmPorCodigo(String codigo, PropietarioData pro){
+            Propiedad_Inmueble inm = new Propiedad_Inmueble();
+            
+             String sql = "SELECT * FROM propiedad_inmueble WHERE codigo = \""+codigo+ "\"";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               
+                inm.setDireccion(rs.getString("direccion"));
+                inm.setCodigo(rs.getString("codigo"));
+                inm.setIdPropiedad(rs.getInt("idPropiedad"));
+                inm.setPrecio(rs.getDouble("precio"));
+                inm.setPropietario(pro.buscarPropietarioPorID(rs.getInt("idPropietario")));
+                inm.setSuperficie(rs.getDouble("superficie"));
+                inm.setTipo(rs.getString("tipo"));
+                inm.setZona(rs.getString("zona"));
+                inm.setVigente(rs.getBoolean("vigente"));
+              
+                
+            }
+            
+            ps.close();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+            
+             return inm;
+           
+        }
+              public Propiedad_Inmueble buscarInmPorCodigo(String codigo){
             Propiedad_Inmueble inm = new Propiedad_Inmueble();
             
              String sql = "SELECT * FROM propiedad_inmueble WHERE codigo = \""+codigo+ "\"";
@@ -204,7 +236,7 @@ public class Propiedad_Inmueble_Data {
                 
                 inm.setIdPropiedad(rs.getInt("idPropiedad"));
                 inm.setPrecio(rs.getDouble("precio"));
-               // inm.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
+
                 inm.setSuperficie(rs.getDouble("superficie"));
                 inm.setTipo(rs.getString("tipo"));
                 inm.setZona(rs.getString("zona"));
@@ -222,5 +254,47 @@ public class Propiedad_Inmueble_Data {
              return inm;
            
         }
+         
+         
+         public void borrarImueble(String codigo){
+             
+             String sql = "UPDATE `propiedad_inmueble` SET `vigente`=0 WHERE `codigo` = " + "\""+codigo+ "\"";
+             
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+         
+         public void reactivarrImueble(String codigo){
+             
+             String sql = "UPDATE `propiedad_inmueble` SET `vigente`=1 WHERE `codigo` = " + "\""+codigo+ "\"";
+             
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+         
+         public void ModificarInmueble(int id, String codigo, String tipo, String zona, String precioMax, String supMin, String direcc){
+             double pMax = Double.parseDouble(precioMax);
+             double sMin = Double.parseDouble(supMin);
+             String sql= "UPDATE `propiedad_inmueble` SET `codigo` = " + "\""+codigo+ "\"" + ",`direccion` = \""+ direcc +"\", zona = \""+zona+"\" , tipo = \""+tipo+"\" , superficie = "+sMin+ " , precio = "+ pMax + "WHERE idPropiedad = "+id;
+             
+               try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Se ha actualizado la propiedad, su nuevo codigo es "+codigo );
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+             
+         }
+                 
     }
 

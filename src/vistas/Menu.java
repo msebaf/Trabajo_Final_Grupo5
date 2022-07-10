@@ -173,7 +173,11 @@ public class Menu extends javax.swing.JFrame {
 
     
     private void jbCintratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCintratoActionPerformed
-        // TODO add your handling code here:
+        Vista_Contrato cont = new Vista_Contrato(conexion);
+        cont.setVisible(true);
+        escritorio.add(cont);
+        escritorio.repaint();
+        escritorio.moveToFront(cont);        // TODO add your handling code here:
     }//GEN-LAST:event_jbCintratoActionPerformed
 
     private void jbInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInmuebleActionPerformed

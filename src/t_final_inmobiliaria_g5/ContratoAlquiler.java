@@ -31,7 +31,7 @@ public class ContratoAlquiler {
       
     }
 
-    public ContratoAlquiler(String vendedor, Propiedad_Inmueble propiedad, Inquilino inquilino/*, LocalDate fecha_Inicio, LocalDate fecha_Final*/) {
+    public ContratoAlquiler(String vendedor, Propiedad_Inmueble propiedad, Inquilino inquilino, LocalDate fecha_Inicio, LocalDate fecha_Final) {
         this.vendedor = vendedor;
         this.propiedad = propiedad;
         this.inquilino = inquilino;

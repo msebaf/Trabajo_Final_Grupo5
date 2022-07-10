@@ -134,6 +134,11 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         jButton7 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        codBorrar = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
         jLabel1.setText("DNI Propietario");
 
@@ -265,7 +270,6 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Zona");
 
-        JMzonas2.setSelectedIndex(-1);
         JMzonas2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JMzonas2ActionPerformed(evt);
@@ -273,8 +277,6 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         });
 
         jLabel8.setText("Tipo");
-
-        JMtipo2.setSelectedIndex(-1);
 
         jLabel9.setText("Superficie Min");
 
@@ -327,9 +329,9 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                             .addComponent(JTsuoM, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(JTpMax, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
+                        .addGap(163, 163, 163)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)
+                        .addGap(61, 61, 61)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
@@ -361,7 +363,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inm por Caract.", jPanel2);
@@ -384,8 +386,6 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         jLabel12.setText("zona");
 
         jLabel13.setText("Tipo");
-
-        ModTipo.setSelectedIndex(-1);
 
         jLabel14.setText("direccion");
 
@@ -490,18 +490,66 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Modificar Inm", jPanel3);
 
+        jLabel17.setText("Ingrese el codigo del inmueble");
+
+        jButton8.setText("Borrar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Salir");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Activar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 557, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel17))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(codBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel17)
+                .addGap(18, 18, 18)
+                .addComponent(codBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jButton8)
+                .addGap(32, 32, 32)
+                .addComponent(jButton10)
+                .addGap(34, 34, 34)
+                .addComponent(jButton9)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Borrar Inm", jPanel4);
+        jTabbedPane1.addTab("Borrar/activar  Inm", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -607,7 +655,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
             Propiedad_Inmueble_Data InmData= new Propiedad_Inmueble_Data(conexion);
             Propiedad_Inmueble prop = InmData.buscarInmPorCodigo(ModCod.getText().toUpperCase());
-            System.out.println(ModCod.getText().toUpperCase());
+     
             ModDir.setText(prop.getDireccion());
             ModPrecio.setText(""+prop.getPrecio());
             ModSup.setText(""+ prop.getSuperficie());
@@ -618,12 +666,37 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        Propiedad_Inmueble_Data InmData= new Propiedad_Inmueble_Data(conexion); 
+      Propiedad_Inmueble prop = InmData.buscarInmPorCodigo(ModCod.getText().toUpperCase());
+      int id = prop.getIdPropiedad();
+      String zona = ModZona.getSelectedItem().toString();
+      String tipo = ModTipo.getSelectedItem().toString();
+      String pMax = ModPrecio.getText();
+      String supmin = ModSup.getText();
+      String direcc = ModDir.getText();
+      String nuCod = tipo.substring(0,2)+id;
+      InmData.ModificarInmueble(id, nuCod, tipo, zona, pMax, supmin, direcc);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void ModCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModCodActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ModCodActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        Propiedad_Inmueble_Data pData = new Propiedad_Inmueble_Data(conexion);
+        pData.borrarImueble(codBorrar.getText()); 
+        JOptionPane.showMessageDialog(this, "El inmueble ya no esta activo en el sistema");// TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+     dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+             Propiedad_Inmueble_Data pData = new Propiedad_Inmueble_Data(conexion);
+        pData.reactivarrImueble(codBorrar.getText()); 
+        JOptionPane.showMessageDialog(this, "El inmueble se ha activado");        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -644,13 +717,17 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     private javax.swing.JTextField ModSup;
     private javax.swing.JComboBox<tipos> ModTipo;
     private javax.swing.JComboBox<zonas> ModZona;
+    private javax.swing.JTextField codBorrar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -659,6 +736,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

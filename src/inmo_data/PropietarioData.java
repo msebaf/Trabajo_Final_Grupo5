@@ -145,6 +145,33 @@ public class PropietarioData {
     }
     
         
+      public Propietario buscarPropietarioPorID(int id){
+        Propietario prop = new Propietario();
+        String sql = "SELECT * FROM propietario WHERE idPropietario = "+ id ;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                prop.setDNI(rs.getInt("DNI"));
+               
+                prop.setIdPropietario(rs.getInt("idPropietario"));
+                prop.setDomicilio(rs.getString("domicilio"));
+               
+                prop.setApellidoPropietario(rs.getString("apellidoPropietario"));
+                prop.setNombrePropietario(rs.getString("nombrePropietario"));
+                prop.setTelefono(rs.getInt("telefono"));
+                
+             
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return prop;
+    }
         
           /*
     

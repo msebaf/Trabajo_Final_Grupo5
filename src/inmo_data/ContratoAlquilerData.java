@@ -40,11 +40,11 @@ public class ContratoAlquilerData {
       
    public void firmarContrato(ContratoAlquiler contrato){
         String generadorCodigo ="";
-        LocalDate date = LocalDate.of(2018, 10, 30);
-         LocalDate date2 = LocalDate.of(2020, 10, 30);
+        LocalDate date = contrato.getFecha_Inicio();
+         LocalDate date2 = contrato.getFecha_Final();
        Date inicio =  Date.valueOf(date); 
        Date finContrato = Date.valueOf(date2);
-       String sql = "INSERT INTO `contratoalquiler`(`vendedor`, `idPropiedad;`, `idInquilino`, `fecha_Inicio`, `fecha_Final`, `vigente`) VALUES (?,?,?,?,?,?)";
+       String sql = "INSERT INTO `contratoalquiler`(`vendedor`, `idPropiedad`, `idInquilino`, `fecha_Inicio`, `fecha_Final`) VALUES (?,?,?,?,?)";
           try {
               PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
               ps.setString(1, "Jhony");
@@ -52,7 +52,7 @@ public class ContratoAlquilerData {
               ps.setInt(3, contrato.getInquilino().getIdInquilino());
               ps.setDate(4, inicio);
               ps.setDate(5, finContrato);
-              ps.setBoolean(6, (finContrato.after(inicio) || finContrato.equals(inicio)));
+             
               ps.executeUpdate();
            ResultSet rs = ps.getGeneratedKeys();
            if(rs.next()){
