@@ -143,9 +143,10 @@ public class ContratoAlquilerData {
            public ArrayList mostrarContratos(){
               ArrayList<ContratoAlquiler> contratos = new ArrayList<>();
               Propiedad_Inmueble prop;
+              Inquilino inqui;
               Conexion conexion = new Conexion();   
               Propiedad_Inmueble_Data cn = new Propiedad_Inmueble_Data(conexion);
-              
+              InquilinoData cni = new InquilinoData(conexion);
               
               
               String sql = "SELECT * FROM `contratoalquiler` ";
@@ -155,7 +156,7 @@ public class ContratoAlquilerData {
             while(rs.next()){
                 ContratoAlquiler contrato = new ContratoAlquiler();
                 contrato.setCodContrato(rs.getString("codContrato"));
-                contrato.setInquilino(new Inquilino()); // completar despues con inquilino
+                contrato.setInquilino(cni.obtenerInquilinoXid(rs.getInt("idInquilino"))); // completar despues con inquilino
                 contrato.setPropiedad(prop= cn.buscarInmPorId(rs.getInt("idPropiedad")));
                 contrato.setVendedor(rs.getString("vendedor"));
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());

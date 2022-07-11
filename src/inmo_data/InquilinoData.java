@@ -217,6 +217,35 @@ public class InquilinoData {
     return datos; 
   }
   
-    
+    public Inquilino obtenerInquilinoXid(int idInq){
+     Inquilino inquilino = null;
+     String sql = "SELECT * FROM inquilino WHERE idInquilino = ?";
+       try {
+            
+           PreparedStatement pstm = cn.prepareStatement(sql);
+           pstm.setInt(1, idInq);
+           ResultSet res = pstm.executeQuery();  
+           
+           while(res.next()){
+               
+           inquilino = new Inquilino();    
+           inquilino.setIdInquilino(res.getInt("idInquilino"));
+           inquilino.setDni(res.getInt("dni"));
+           inquilino.setApellido(res.getString("apellido"));
+           inquilino.setApellido(res.getString("nombre"));
+           inquilino.setCuit(res.getInt("cuit"));
+           inquilino.setTelefono(res.getInt("telefono"));
+           inquilino.setTrabajo(res.getString("trabajo"));            
+           inquilino.setApellidoGarante(res.getString("apellidoGarante"));
+           inquilino.setNombreGarante(res.getString("nombreGarante"));
+           inquilino.setDniGarante(res.getInt("dniGarante"));
+       }
+           pstm.close();
+          
+      } catch (Exception e) {
+          JOptionPane.showMessageDialog(null,"Error al obtener cliente");
+      }
+     return inquilino;  
+  }
 }
 

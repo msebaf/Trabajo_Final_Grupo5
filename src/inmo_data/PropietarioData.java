@@ -173,19 +173,16 @@ public class PropietarioData {
         return prop;
     }
         
-          /*
+         
     
         
         
 
-    public void listarPropiedades(Propiedad_Inmueble propiedades){
-        
-    }
+   
       
       
       
-      
-      
+       /*
       
  // MODIFICAR     
     public void modificarPropietario(Propietario propietario){

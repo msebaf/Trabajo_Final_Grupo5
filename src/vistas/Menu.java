@@ -6,6 +6,8 @@
 package vistas;
 
 import conexion.Conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import javax.swing.WindowConstants;
 
@@ -29,7 +31,11 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
-
+      @Override
+    public Image getIconImage(){      
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("image/icono.png"));
+        return retValue;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +56,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         jbInmueble.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Home_22970.png"))); // NOI18N
         jbInmueble.addActionListener(new java.awt.event.ActionListener() {

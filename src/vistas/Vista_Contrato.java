@@ -94,6 +94,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         JTcodRes = new javax.swing.JTextField();
+        jButton8 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         JTcodB = new javax.swing.JTextField();
@@ -253,6 +254,8 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton8.setText("Salir");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -263,11 +266,13 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addGap(226, 226, 226)
                         .addComponent(jLabel9))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(jButton5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(207, 207, 207)
-                        .addComponent(JTcodRes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JTcodRes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(235, 235, 235)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(248, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -279,7 +284,9 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addComponent(JTcodRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jButton5)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jButton8)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Rescindir Contrato", jPanel2);
@@ -445,6 +452,7 @@ LocalDate localFinal = instant2
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

@@ -5,16 +5,30 @@
  */
 package vistas;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import conexion.Conexion;
 import inmo_data.ContratoAlquilerData;
 import inmo_data.InquilinoData;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import t_final_inmobiliaria_g5.ContratoAlquiler;
 import t_final_inmobiliaria_g5.Inquilino;
-
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import java.awt.Font;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,6 +36,7 @@ import t_final_inmobiliaria_g5.Inquilino;
  */
 public class Vista_FormInquilino extends javax.swing.JInternalFrame {
      private DefaultTableModel modelo;
+     
      Conexion conexion;
      private InquilinoData inquilinoData = null;
      private ArrayList<Inquilino> listaInquilinos;
@@ -39,8 +54,9 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         
          contratoAlquilerData = new ContratoAlquilerData(conexion);
          listaContratos = (ArrayList)contratoAlquilerData.mostrarContratos();
-        
-        llenarCombo();
+       
+        cargarInquilinos();
+        //llenarCombo();
         armarCabecera();
         cargaDatos();
         
@@ -140,6 +156,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jCBInquilino = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaProp = new javax.swing.JTable();
+        jBImprimir = new javax.swing.JButton();
         jbSalirListar = new javax.swing.JButton();
 
         JTtrabajo.setBackground(new java.awt.Color(204, 204, 204));
@@ -351,7 +368,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbApellidoGarante)
                     .addComponent(JTapellido_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -543,7 +560,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                         .addComponent(jbLimpiarBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
                         .addComponent(jbSalirBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -591,7 +608,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbApellidoGarante2)
                     .addComponent(JTapellido_garanteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbLimpiarBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSalirBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -604,11 +621,11 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
+            .addGap(0, 684, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Borrar Cliente", jPanel4);
@@ -791,7 +808,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                                     .addComponent(JTnombre_garanteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addComponent(jbBuscarModifica, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -800,7 +817,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addGap(57, 57, 57))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(393, Short.MAX_VALUE)
+                    .addContainerGap(440, Short.MAX_VALUE)
                     .addComponent(jbSalirModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(110, 110, 110)))
         );
@@ -817,7 +834,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLbApellido5)
                             .addComponent(JTapellidoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(JTnombreModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLbNombre5))
@@ -850,7 +867,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLbApellidoGarante1)
                             .addComponent(JTapellido_garanteModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbLimpiarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -862,7 +879,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                    .addContainerGap(450, Short.MAX_VALUE)
+                    .addContainerGap(414, Short.MAX_VALUE)
                     .addComponent(jbSalirModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(14, 14, 14)))
         );
@@ -871,6 +888,12 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
         jLabel4.setText("Cliente");
+
+        jCBInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBInquilinoActionPerformed(evt);
+            }
+        });
 
         jTablaProp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -885,6 +908,13 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTablaProp);
 
+        jBImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Quickprinting_printing_6313.png"))); // NOI18N
+        jBImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImprimirActionPerformed(evt);
+            }
+        });
+
         jbSalirListar.setText("SALIR");
         jbSalirListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -897,31 +927,35 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jBImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(jbSalirListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbSalirListar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGap(91, 91, 91)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jCBInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGap(43, 43, 43)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCBInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jCBInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jbSalirListar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(96, 96, 96)
+                .addComponent(jBImprimir)
+                .addGap(114, 114, 114)
+                .addComponent(jbSalirListar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de Propiedas", jPanel5);
@@ -932,15 +966,15 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -1322,6 +1356,56 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jbSalirListarActionPerformed
+
+    private void jCBInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBInquilinoActionPerformed
+     borraFilasTabla();
+     cargaDatos();
+    }//GEN-LAST:event_jCBInquilinoActionPerformed
+
+    private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
+        // TODO add your handling code here:
+        Inquilino inq =(Inquilino)jCBInquilino.getSelectedItem();
+        Document documento = new Document();
+         
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/" + inq.getNombre().trim()+".pdf"));
+        
+           com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/image/BannerPDF.jpg");
+           header.scaleToFit(650,1000);
+           header.setAlignment(Chunk.ALIGN_CENTER);
+           
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("información Del Cliente. \n \n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
+            
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+            
+            PdfPTable tablaCliente = new PdfPTable(4);
+            tablaCliente.addCell("CodigoInterno");
+            tablaCliente.addCell("Nombre");
+            tablaCliente.addCell("Apellido");
+            tablaCliente.addCell("Dni"); 
+            
+            tablaCliente.addCell(inq.getIdInquilino()+"");
+            tablaCliente.addCell(inq.getNombre());
+            tablaCliente.addCell(inq.getApellido());
+            tablaCliente.addCell(inq.getDni()+"");            
+            documento.add(tablaCliente);
+            
+  
+          documento.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error al imprimir tablas");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jBImprimirActionPerformed
     
     public void limpiarCamposBuscar(){
         JTdniBuscar.setText("");
@@ -1351,12 +1435,14 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
          jTIdModificar.setText("");
      }
   
-    private void llenarCombo(){
+   /* private void llenarCombo(){
   
         for(Inquilino item: listaInquilinos){
          jCBInquilino.addItem(item);
         }
-    }
+    }*/
+    
+    
     
      private void armarCabecera() {                
         
@@ -1386,17 +1472,31 @@ private void cargaDatos(){
    borraFilasTabla();
    
    Inquilino inq =(Inquilino)jCBInquilino.getSelectedItem();
+   
   
-   for(ContratoAlquiler p : listaContratos){
-    
-       System.out.println("ver contrato id Inquilno"+p.getInquilino().getIdInquilino());//falta el id de inq del contrato
+   for(ContratoAlquiler p : listaContratos){    
+       
+       //System.out.println("ver contrato id Inquilno"+p.toString());//chequeo de datos
    if(p.getInquilino().getIdInquilino() == inq.getIdInquilino()){
       
      modelo.addRow(new Object[]{p.getCodContrato(),p.getPropiedad().getIdPropiedad(),p.getPropiedad().getTipo(),p.getPropiedad().getDireccion()});   
    }
    
    }
-   }              
+   } 
+private void cargarInquilinos(){
+    
+    Collections.sort(listaInquilinos, new Comparator<Inquilino>() {
+        @Override
+        public int compare(Inquilino t, Inquilino t1) {
+           return t.getApellido().compareTo(t1.getApellido());
+        }
+    });
+    for(Inquilino item: listaInquilinos){
+       jCBInquilino.addItem(item);
+    }
+
+}
           
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1433,6 +1533,7 @@ private void cargaDatos(){
     private javax.swing.JTextField JTtrabajo;
     private javax.swing.JTextField JTtrabajoBuscar;
     private javax.swing.JTextField JTtrabajoModificar;
+    private javax.swing.JButton jBImprimir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<Inquilino> jCBInquilino;
