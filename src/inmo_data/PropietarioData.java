@@ -174,11 +174,73 @@ public class PropietarioData {
     }
         
          
-    
+     public ArrayList<Propiedad_Inmueble> listarPropiedadesDePropietarioPorDni(int DNI){
+
+             ArrayList<Propiedad_Inmueble> propie= new ArrayList<>();
+            Conexion conexion = new Conexion();
+            PropietarioData propd = new PropietarioData(conexion);
+            int idProp = propd.buscarPropietario(DNI).getIdPropietario();          
+            String sql = "SELECT * FROM propiedad_inmueble WHERE idPropietario = " + idProp;
+                        
+            try {
+                
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+
+                while(rs.next()){
+                    Propiedad_Inmueble prop = new Propiedad_Inmueble();
+                    prop.setDireccion(rs.getString("direccion"));
+                    prop.setPrecio(rs.getDouble("precio"));
+                    prop.setSuperficie(rs.getDouble("superficie"));
+                    prop.setTipo(rs.getString("tipo"));
+                    prop.setZona(rs.getString("zona"));
+                    prop.setCodigo(rs.getString("codigo"));
+                    propie.add(prop);
+                }
+                ps.close();
+
+            } catch (SQLException ex) {
+
+                Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
+            
+            
+            return propie;
+
+    		}
+          
         
         
 
-   
+     public ArrayList<Propietario> listarPropietarios(){
+        
+        ArrayList<Propietario> propietarios = new ArrayList<>();
+        String sql = "SELECT * FROM propietario" ;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Propietario prop = new Propietario();
+                prop.setDNI(rs.getInt("DNI"));
+               
+                prop.setIdPropietario(rs.getInt("idPropietario"));
+                prop.setDomicilio(rs.getString("domicilio"));
+               
+                prop.setApellidoPropietario(rs.getString("apellidoPropietario"));
+                prop.setNombrePropietario(rs.getString("nombrePropietario"));
+                prop.setTelefono(rs.getInt("telefono"));
+                propietarios.add(prop);
+             
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return propietarios;
+    }
       
       
       
