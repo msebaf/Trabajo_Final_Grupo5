@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 import t_final_inmobiliaria_g5.ContratoAlquiler;
 import t_final_inmobiliaria_g5.Inquilino;
 import t_final_inmobiliaria_g5.Propiedad_Inmueble;
@@ -29,6 +30,7 @@ import t_final_inmobiliaria_g5.Propietario;
  */
 public class Vista_Contrato extends javax.swing.JInternalFrame {
         Conexion conexion;
+        DefaultTableModel modelo;
     /**
      * Creates new form Vusta_Contrato
      */
@@ -39,6 +41,23 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         cargarPropiedades();
         cargarInquilinos();
         cargarPropietarios();
+         modelo= new DefaultTableModel();
+        armarCabeceraTabla();
+    }
+    
+     private void armarCabeceraTabla() {
+        ArrayList<Object> cabecera = new ArrayList<>();
+        cabecera.add("Codigo");
+        cabecera.add("vendedor");
+        cabecera.add("Cod propiedad");
+        cabecera.add("DNI Inquilino");
+        cabecera.add("Fecha Inicio");
+        cabecera.add("Fecha Final");
+        for (Object object : cabecera){ 
+         modelo.addColumn(object);
+            
+        }
+        JTabla.setModel(modelo);
     }
 
     public void cargarPropiedades(){
@@ -65,7 +84,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         public void cargarPropietarios(){
             PropietarioData proData = new PropietarioData(conexion);
             ArrayList<Propietario> props = new ArrayList<>();
-            props = proData.listarPropietarios();
+            props = (ArrayList)proData.listaTodosPropietarios();
             for (Propietario prop : props) {
                 JCpropietarios.addItem(prop);
             }
@@ -119,21 +138,15 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         JCinqui2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
+        JBbusXinq = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         JCpropiedades2 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        JBconXpropiedad = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         JCpropietarios = new javax.swing.JComboBox<>();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        JBbusXpropietario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTabla = new javax.swing.JTable();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
 
@@ -380,29 +393,39 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Buscar Contratos de Inquilino");
 
+        JCinqui2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JCinqui2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCinqui2ActionPerformed(evt);
             }
         });
 
-        jButton9.setText("jButton9");
-
-        jLabel12.setText("DNI");
+        JBbusXinq.setText("buscar");
+        JBbusXinq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbusXinqActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Buscar Contratos de Propiedad");
 
-        jLabel14.setText("Cod:");
-
-        jButton10.setText("jButton10");
+        JBconXpropiedad.setText("buscar");
+        JBconXpropiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBconXpropiedadActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("Buscar Contratos de propietario");
 
-        jLabel16.setText("DNI:");
+        JBbusXpropietario.setText("Buscar");
+        JBbusXpropietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbusXpropietarioActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("jButton11");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -413,11 +436,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JTabla);
 
-        jRadioButton1.setText("jRadioButton1");
+        jRadioButton1.setText("Vigentes");
 
-        jRadioButton2.setText("jRadioButton2");
+        jRadioButton2.setText("Vencidos");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -432,29 +455,18 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JCinqui2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JCinqui2, 0, 319, Short.MAX_VALUE)
                     .addComponent(JCpropiedades2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JCpropietarios, 0, 217, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel16))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(JCpropietarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(JBbusXinq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBconXpropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                    .addComponent(JBbusXpropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,30 +487,24 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(JCinqui2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9)
-                    .addComponent(jLabel12))
+                    .addComponent(JBbusXinq))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(JCpropiedades2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jButton10))
+                    .addComponent(JBconXpropiedad))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JCpropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel16)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11))
+                    .addComponent(JBbusXpropietario))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buscar Contrato", jPanel4);
@@ -584,11 +590,42 @@ LocalDate localFinal = instant2
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void JCinqui2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCinqui2ActionPerformed
-        // TODO add your handling code here:
+       
+        
+              // TODO add your handling code here:
     }//GEN-LAST:event_JCinqui2ActionPerformed
 
+    private void JBbusXinqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbusXinqActionPerformed
+        ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
+        ArrayList<ContratoAlquiler> contratos = contData.mostrarContratosPorInquilino((Inquilino)JCinqui2.getSelectedItem());  
+        for (ContratoAlquiler contrato : contratos) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+            
+        }
+                
+// TODO add your handling code here:
+    }//GEN-LAST:event_JBbusXinqActionPerformed
+
+    private void JBconXpropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBconXpropiedadActionPerformed
+            ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
+        ArrayList<ContratoAlquiler> contratos = contData.buscarContratosPorInmueble((Propiedad_Inmueble)JCpropiedades2.getSelectedItem());  
+        for (ContratoAlquiler contrato : contratos) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBconXpropiedadActionPerformed
+    }
+    private void JBbusXpropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbusXpropietarioActionPerformed
+             ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
+        ArrayList<ContratoAlquiler> contratos = contData.mostrarContratosPorPropietario((Propietario)JCpropietarios.getSelectedItem());  
+        for (ContratoAlquiler contrato : contratos) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});       // TODO add your handling code here:
+    }//GEN-LAST:event_JBbusXpropietarioActionPerformed
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBbusXinq;
+    private javax.swing.JButton JBbusXpropietario;
+    private javax.swing.JButton JBconXpropiedad;
     private javax.swing.JTextField JCbusInqu;
     private com.toedter.calendar.JDateChooser JCfin;
     private javax.swing.JComboBox<Inquilino> JCinqui2;
@@ -598,6 +635,7 @@ LocalDate localFinal = instant2
     private javax.swing.JComboBox<Propietario> JCpropietarios;
     private com.toedter.calendar.JDateChooser JDfinal;
     private com.toedter.calendar.JDateChooser JDinicio;
+    private javax.swing.JTable JTabla;
     private javax.swing.JTextField JTcodB;
     private javax.swing.JTextField JTcodBusc;
     private javax.swing.JTextField JTcodRes;
@@ -607,8 +645,6 @@ LocalDate localFinal = instant2
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -616,15 +652,11 @@ LocalDate localFinal = instant2
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -641,9 +673,5 @@ LocalDate localFinal = instant2
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

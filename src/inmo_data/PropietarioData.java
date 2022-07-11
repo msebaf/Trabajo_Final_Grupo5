@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -174,7 +175,7 @@ public class PropietarioData {
     }
         
          
-     public ArrayList<Propiedad_Inmueble> listarPropiedadesDePropietarioPorDni(int DNI){
+     public ArrayList<Propiedad_Inmueble> listarPropiedadesDePropietarioPorDni(long DNI){
 
              ArrayList<Propiedad_Inmueble> propie= new ArrayList<>();
             Conexion conexion = new Conexion();
@@ -189,6 +190,7 @@ public class PropietarioData {
 
                 while(rs.next()){
                     Propiedad_Inmueble prop = new Propiedad_Inmueble();
+                    prop.setIdPropiedad(rs.getInt("idPropiedad"));
                     prop.setDireccion(rs.getString("direccion"));
                     prop.setPrecio(rs.getDouble("precio"));
                     prop.setSuperficie(rs.getDouble("superficie"));
@@ -213,34 +215,28 @@ public class PropietarioData {
         
         
 
-     public ArrayList<Propietario> listarPropietarios(){
-        
-        ArrayList<Propietario> propietarios = new ArrayList<>();
-        String sql = "SELECT * FROM propietario" ;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                Propietario prop = new Propietario();
-                prop.setDNI(rs.getInt("DNI"));
-               
-                prop.setIdPropietario(rs.getInt("idPropietario"));
-                prop.setDomicilio(rs.getString("domicilio"));
-               
-                prop.setApellidoPropietario(rs.getString("apellidoPropietario"));
-                prop.setNombrePropietario(rs.getString("nombrePropietario"));
-                prop.setTelefono(rs.getInt("telefono"));
-                propietarios.add(prop);
-             
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        return propietarios;
-    }
+         
+public List listaTodosPropietarios(){
+  List<Propietario> datos = new ArrayList<>();
+  String sql = "SELECT * FROM propietario";
+      try {
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery();
+         while(rs.next()){
+            Propietario pro = new Propietario();             
+            pro.setIdPropietario(rs.getInt("idPropietario"));
+            pro.setDNI(rs.getInt("DNI"));
+            pro.setApellidoPropietario(rs.getString("apellidoPropietario"));
+            pro.setNombrePropietario(rs.getString("nombrePropietario"));
+            pro.setDomicilio(rs.getString("domicilio"));
+            datos.add(pro);
+         }
+         
+      } catch (Exception e) {
+      }
+  
+    return datos; 
+  }
       
       
       

@@ -653,8 +653,8 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             String sup= ""+ propiedad.getSuperficie();
             String precio = ""+propiedad.getPrecio();
             
-            int idProp = propiedad.getIdPropiedad();
-            ArrayList<ContratoAlquiler> contratosProp = contData.buscarContratosPorInmueble(idProp);
+        
+            ArrayList<ContratoAlquiler> contratosProp = contData.buscarContratosPorInmueble(propiedad);
             if(contratosProp.size()>0){
                 for (ContratoAlquiler contrato : contratosProp) {
                     if(contrato.getFecha_Final().isAfter(testigo) || contrato.getFecha_Final().isEqual(testigo)){

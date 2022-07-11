@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import t_final_inmobiliaria_g5.ContratoAlquiler;
 import t_final_inmobiliaria_g5.Inquilino;
 import t_final_inmobiliaria_g5.Propiedad_Inmueble;
+import t_final_inmobiliaria_g5.Propietario;
 
 /**
  *
@@ -173,43 +174,33 @@ public class ContratoAlquilerData {
               
           }
            
-         public ArrayList mostrarContratosPorPropietario(int idPropietario){
+         public ArrayList mostrarContratosPorPropietario(Propietario propi){
+             ArrayList<Propiedad_Inmueble> propiedadeeDelPropietario;
               ArrayList<ContratoAlquiler> contratos = new ArrayList<>();
-              Propiedad_Inmueble prop;
+              ArrayList<ContratoAlquiler> contratosAux;
+            
               Conexion conexion = new Conexion();   
-              Propiedad_Inmueble_Data cn = new Propiedad_Inmueble_Data(conexion);
+              PropietarioData proData = new PropietarioData(conexion);
+              propiedadeeDelPropietario = proData.listarPropiedadesDePropietarioPorDni(propi.getDNI());
+            
               
               
-              
-              String sql = "SELECT * FROM `contratoalquiler` ";
-              try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                ContratoAlquiler contrato = new ContratoAlquiler();
-                contrato.setCodContrato(rs.getString("codContrato"));
-                contrato.setInquilino(new Inquilino()); // completar despues con inquilino
-                contrato.setPropiedad(prop= cn.buscarInmPorId(rs.getInt("idPropiedad")));
-                contrato.setVendedor(rs.getString("vendedor"));
-                contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
-                 contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
-                 contrato.setIdContrato(rs.getInt("idContrato"));
-                
-                 if(contrato.getPropiedad().getPropietario().getIdPropietario()==idPropietario){
-                 contratos.add(contrato);
-                 }
-            }
-              } catch (SQLException ex) {
-            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
-              
+              for (Propiedad_Inmueble propiedad : propiedadeeDelPropietario) {
+                 
+               contratosAux = buscarContratosPorInmueble(propiedad);
+                 for (ContratoAlquiler contrato : contratosAux) {
+                      contratos.add(contrato);
+                      
+                  }
+           
+              }
               return contratos;
               
           }
            
          
          
-         public ArrayList mostrarContratosPorInquilino(int idInquilino){
+         public ArrayList mostrarContratosPorInquilino(Inquilino inqui){
               ArrayList<ContratoAlquiler> contratos = new ArrayList<>();
               Propiedad_Inmueble prop;
               Conexion conexion = new Conexion();   
@@ -217,21 +208,21 @@ public class ContratoAlquilerData {
               
               
               
-              String sql = "SELECT * FROM `contratoalquiler` ";
+              String sql = "SELECT * FROM `contratoalquiler` WHERE idInquilino = " + inqui.getIdInquilino();
               try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ContratoAlquiler contrato = new ContratoAlquiler();
                 contrato.setCodContrato(rs.getString("codContrato"));
-                contrato.setInquilino(new Inquilino()); // completar despues con inquilino
+                contrato.setInquilino(inqui); 
                 contrato.setPropiedad(prop= cn.buscarInmPorId(rs.getInt("idPropiedad")));
                 contrato.setVendedor(rs.getString("vendedor"));
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
                  contrato.setFecha_Inicio(rs.getDate("fecha_Inicio").toLocalDate());
                  contrato.setIdContrato(rs.getInt("idContrato"));
             
-                 if(contrato.getInquilino().getIdInquilino()==idInquilino){
+                 if(contrato.getInquilino().getIdInquilino()==inqui.getIdInquilino()){
                  contratos.add(contrato);
                  }
             }
@@ -243,22 +234,22 @@ public class ContratoAlquilerData {
               
           }
           
-          public ArrayList buscarContratosPorInmueble(int idPropiedad){
+          public ArrayList buscarContratosPorInmueble(Propiedad_Inmueble prop){
               ArrayList<ContratoAlquiler> contratos = new ArrayList<>();
-              Propiedad_Inmueble prop;
+             
               Conexion conexion = new Conexion();   
               Propiedad_Inmueble_Data cn = new Propiedad_Inmueble_Data(conexion);
-              prop= cn.buscarInmPorId(idPropiedad);
+              InquilinoData iDAta = new InquilinoData(conexion);
               
               
-              String sql = "SELECT * FROM `contratoalquiler` WHERE `idPropiedad` =" + idPropiedad;
+              String sql = "SELECT * FROM `contratoalquiler` WHERE `idPropiedad` =" + prop.getIdPropiedad();
               try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ContratoAlquiler contrato = new ContratoAlquiler();
                 contrato.setCodContrato(rs.getString("codContrato"));
-                contrato.setInquilino(new Inquilino()); // completar despues con inquilino
+                contrato.setInquilino(iDAta.obtenerInquilinoXid(rs.getInt("idInquilino")));
                 contrato.setPropiedad(prop);
                 contrato.setVendedor(rs.getString("vendedor"));
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());
