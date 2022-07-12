@@ -88,8 +88,7 @@ public class Propiedad_Inmueble_Data {
         }
         
     }
-      
-        public ArrayList<Propiedad_Inmueble> buscarInmDisponibles(PropietarioData pro){
+      public ArrayList<Propiedad_Inmueble> buscarInmDisponibles(PropietarioData pro){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
           
              String sql = "SELECT * FROM propiedad_inmueble WHERE vigente = 1  " ;
@@ -103,6 +102,36 @@ public class Propiedad_Inmueble_Data {
                 prop.setIdPropiedad(rs.getInt("idPropiedad"));
                 prop.setPrecio(rs.getDouble("precio"));
                 prop.setPropietario(pro.buscarPropietario(rs.getInt("idPropietario")));
+                prop.setSuperficie(rs.getDouble("superficie"));
+                prop.setTipo(rs.getString("tipo"));
+                prop.setZona(rs.getString("zona"));
+                prop.setCodigo(rs.getString("codigo"));
+                disponibles.add(prop);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+            
+            
+            return disponibles;
+        }
+        public ArrayList<Propiedad_Inmueble> ListarPropiedades(PropietarioData proData){
+            ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
+          
+             String sql = "SELECT * FROM propiedad_inmueble" ;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                Propiedad_Inmueble prop = new Propiedad_Inmueble();
+                prop.setDireccion(rs.getString("direccion"));
+              
+                prop.setIdPropiedad(rs.getInt("idPropiedad"));
+                prop.setPrecio(rs.getDouble("precio"));
+                prop.setPropietario(proData.buscarPropietarioPorID(rs.getInt("idPropietario")));
                 prop.setSuperficie(rs.getDouble("superficie"));
                 prop.setTipo(rs.getString("tipo"));
                 prop.setZona(rs.getString("zona"));

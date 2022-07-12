@@ -89,6 +89,32 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 JCpropietarios.addItem(prop);
             }
         }
+        
+         private void borraFilasTabla(){
+   if(modelo!=null){
+       int a =modelo.getRowCount()-1;
+
+           for(int i=a;i>=0;i--){
+   
+                modelo.removeRow(i );
+           }
+            }
+         }
+        public void limpiarRegistros(){
+            JTvendedor.setText("");
+            JTcodBusc.setText("");
+            JCbusInqu.setText("");
+            JDinicio.setDate(null);
+            JDfinal.setDate(null);
+            JTcodRes.setText("");
+            JTcodB.setText("");
+            JCfin.setDate(null);
+            borraFilasTabla();
+            JRBvencidos.setSelected(false);
+            JRBvigente.setSelected(false);
+            
+        }
+        
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,6 +150,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -147,8 +174,10 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         JBbusXpropietario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTabla = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        JRBvigente = new javax.swing.JRadioButton();
+        JRBvencidos = new javax.swing.JRadioButton();
+        jButton9 = new javax.swing.JButton();
+        JBlimpiar2 = new javax.swing.JButton();
 
         jLabel1.setText("Vendedor");
 
@@ -189,6 +218,13 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Limpiar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
             }
         });
 
@@ -242,13 +278,16 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addGap(253, 253, 253)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jButton3)
-                        .addGap(78, 78, 78)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton10)
+                .addGap(80, 80, 80)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(145, 145, 145))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,10 +322,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JDinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JDfinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton10))
                 .addGap(54, 54, 54))
         );
 
@@ -438,12 +478,26 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(JTabla);
 
-        jRadioButton1.setText("Vigentes");
+        JRBvigente.setText("Vigentes");
 
-        jRadioButton2.setText("Vencidos");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        JRBvencidos.setText("Vencidos");
+        JRBvencidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                JRBvencidosActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Salir");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        JBlimpiar2.setText("Limpiar");
+        JBlimpiar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBlimpiar2ActionPerformed(evt);
             }
         });
 
@@ -465,8 +519,8 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(JBbusXinq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBconXpropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(JBbusXpropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(JBconXpropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBbusXpropietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -475,9 +529,14 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(181, 181, 181)
-                        .addComponent(jRadioButton1)
+                        .addComponent(JRBvigente)
                         .addGap(63, 63, 63)
-                        .addComponent(jRadioButton2)))
+                        .addComponent(JRBvencidos))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JBlimpiar2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -502,9 +561,13 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(201, Short.MAX_VALUE))
+                    .addComponent(JRBvigente)
+                    .addComponent(JRBvencidos))
+                .addGap(26, 26, 26)
+                .addComponent(JBlimpiar2)
+                .addGap(48, 48, 48)
+                .addComponent(jButton9)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buscar Contrato", jPanel4);
@@ -559,6 +622,7 @@ LocalDate localFinal = instant2
          System.out.println(nuevoContrato.getFecha_Inicio());
          System.out.println(nuevoContrato.getFecha_Final());
          coAlData.firmarContrato(nuevoContrato);
+         limpiarRegistros();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -581,13 +645,14 @@ LocalDate localFinal = instant2
           LocalDate localFinal = instant
                         .atZone(defaultZoneId).toLocalDate();
          caData.renovarContrato(cont, localFinal);
+         limpiarRegistros();
          
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void JRBvencidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBvencidosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_JRBvencidosActionPerformed
 
     private void JCinqui2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCinqui2ActionPerformed
        
@@ -596,6 +661,7 @@ LocalDate localFinal = instant2
     }//GEN-LAST:event_JCinqui2ActionPerformed
 
     private void JBbusXinqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbusXinqActionPerformed
+       limpiarRegistros();
         ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
         ArrayList<ContratoAlquiler> contratos = contData.mostrarContratosPorInquilino((Inquilino)JCinqui2.getSelectedItem());  
         for (ContratoAlquiler contrato : contratos) {
@@ -621,11 +687,25 @@ LocalDate localFinal = instant2
              modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});       // TODO add your handling code here:
     }//GEN-LAST:event_JBbusXpropietarioActionPerformed
     }
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+      dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        limpiarRegistros();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void JBlimpiar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiar2ActionPerformed
+         limpiarRegistros();        // TODO add your handling code here:
+    }//GEN-LAST:event_JBlimpiar2ActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBbusXinq;
     private javax.swing.JButton JBbusXpropietario;
     private javax.swing.JButton JBconXpropiedad;
+    private javax.swing.JButton JBlimpiar2;
     private javax.swing.JTextField JCbusInqu;
     private com.toedter.calendar.JDateChooser JCfin;
     private javax.swing.JComboBox<Inquilino> JCinqui2;
@@ -635,6 +715,8 @@ LocalDate localFinal = instant2
     private javax.swing.JComboBox<Propietario> JCpropietarios;
     private com.toedter.calendar.JDateChooser JDfinal;
     private com.toedter.calendar.JDateChooser JDinicio;
+    private javax.swing.JRadioButton JRBvencidos;
+    private javax.swing.JRadioButton JRBvigente;
     private javax.swing.JTable JTabla;
     private javax.swing.JTextField JTcodB;
     private javax.swing.JTextField JTcodBusc;
@@ -645,6 +727,7 @@ LocalDate localFinal = instant2
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -652,6 +735,7 @@ LocalDate localFinal = instant2
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -669,8 +753,6 @@ LocalDate localFinal = instant2
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
