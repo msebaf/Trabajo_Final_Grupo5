@@ -57,7 +57,7 @@ public class Propiedad_Inmueble_Data {
         }
         
         if(existePropietario){
-       sql = "INSERT INTO propiedad_inmueble (direccion, zona, tipo, superficie, precio, idPropietario )  VALUES (?, ?, ?, ?,?,?)";
+       sql = "INSERT INTO propiedad_inmueble (direccion, zona, tipo, superficie, precio, idPropietario, vigente )  VALUES (?, ?, ?, ?,?,?, true)";
         try {
           
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
