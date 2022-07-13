@@ -41,8 +41,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         llenarComboTipos();
         cargarPropiedades();
         modelo= new DefaultTableModel();
-        
-        
+          
         armarCabeceraTabla();
         
     }
@@ -674,35 +673,29 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         String supM =JTsup.getText();
         String pMax = JTpMax.getText();
        ArrayList<Propiedad_Inmueble> propiedades = PimData.buscarInmPorCaract(tipo, zona, supM, pMax);
-       String disponible = "DISPONIBLE";
+      
         for (Propiedad_Inmueble propiedad : propiedades) {
+             String disponible = "DISPONIBLE";
             String cod = propiedad.getCodigo();
             String dir = propiedad.getDireccion();
             String sup= ""+ propiedad.getSuperficie();
             String precio = ""+propiedad.getPrecio();
             
-        
+         
             ArrayList<ContratoAlquiler> contratosProp = contData.buscarContratosPorInmueble(propiedad);
-            if(contratosProp.size()>0){
+            if(contratosProp.size()>=0){
                 for (ContratoAlquiler contrato : contratosProp) {
-                    JButton boton = new JButton("Alquilar");
-                    boton.setSize(100,45);
-                    boton.setVisible(true);
-                    ActionListener listener = new ActionListener(){ 
-   public void actionPerformed(ActionEvent e) { 
-     
-   }         
-};
-boton.addActionListener(listener);
+                    
                     if(contrato.getFecha_Final().isAfter(testigo) || contrato.getFecha_Final().isEqual(testigo)){
                         disponible = contrato.getFecha_Final().plusDays(1).toString();
                         testigo = contrato.getFecha_Final();
                     }
-                    
+                   
                 }
+                 modelo.addRow(new Object[]{cod, propiedad.getDireccion(), propiedad.getSuperficie() , propiedad.getPrecio(), disponible});
             }
-            modelo.addRow(new Object[]{cod, propiedad.getDireccion(), propiedad.getSuperficie() , propiedad.getPrecio(), disponible});
         }
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
