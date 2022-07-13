@@ -125,11 +125,13 @@ public class Propiedad_Inmueble {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    //diferencia con la del git en el toString (simon)
     @Override
     public String toString() {
-        return    codigo + " - zona " + zona + "-" + direccion + "-$" + precio;
+        return  codigo + ", " + propietario + "," + zona + ", " + direccion + ", " + superficie + ", " + precio ;
     }
+
+  
 
     @Override
     public int hashCode() {

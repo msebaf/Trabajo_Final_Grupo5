@@ -23,12 +23,13 @@ public class Inquilino {
     private String apellidoGarante;
     private String nombreGarante;
     private long dniGarante; 
+    private boolean estado;
     public ArrayList<Propiedad_Inmueble> inmuebles;
 
     public Inquilino() {
     }
 
-    public Inquilino(int idInquilino, long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante, ArrayList<Propiedad_Inmueble> inmuebles) {
+    public Inquilino(int idInquilino, long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante, boolean estado) {
         this.idInquilino = idInquilino;
         this.dni = dni;
         this.apellido = apellido;
@@ -39,34 +40,36 @@ public class Inquilino {
         this.apellidoGarante = apellidoGarante;
         this.nombreGarante = nombreGarante;
         this.dniGarante = dniGarante;
+        this.estado = estado;
+    }
+
+    public Inquilino(long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante, boolean estado) {
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.telefono = telefono;
+        this.trabajo = trabajo;
+        this.apellidoGarante = apellidoGarante;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.estado = estado;
+    }
+
+    public Inquilino(int idInquilino, long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante, boolean estado, ArrayList<Propiedad_Inmueble> inmuebles) {
+        this.idInquilino = idInquilino;
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.telefono = telefono;
+        this.trabajo = trabajo;
+        this.apellidoGarante = apellidoGarante;
+        this.nombreGarante = nombreGarante;
+        this.dniGarante = dniGarante;
+        this.estado = estado;
         this.inmuebles = inmuebles;
     }
-
-    public Inquilino(long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante) {
-        this.dni = dni;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.cuit = cuit;
-        this.telefono = telefono;
-        this.trabajo = trabajo;
-        this.apellidoGarante = apellidoGarante;
-        this.nombreGarante = nombreGarante;
-        this.dniGarante = dniGarante;
-    }
-
-    public Inquilino(int idInquilino, long dni, String apellido, String nombre, long cuit, long telefono, String trabajo, String apellidoGarante, String nombreGarante, long dniGarante) {
-        this.idInquilino = idInquilino;
-        this.dni = dni;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.cuit = cuit;
-        this.telefono = telefono;
-        this.trabajo = trabajo;
-        this.apellidoGarante = apellidoGarante;
-        this.nombreGarante = nombreGarante;
-        this.dniGarante = dniGarante;
-    }
-    
 
     public int getIdInquilino() {
         return idInquilino;
@@ -148,6 +151,14 @@ public class Inquilino {
         this.dniGarante = dniGarante;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public ArrayList<Propiedad_Inmueble> getInmuebles() {
         return inmuebles;
     }
@@ -156,6 +167,10 @@ public class Inquilino {
         this.inmuebles = inmuebles;
     }
 
+   
+    
+
+  
     @Override
     public int hashCode() {
         int hash = 7;

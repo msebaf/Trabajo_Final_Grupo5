@@ -63,6 +63,7 @@ public class Login extends javax.swing.JFrame {
         jLabel_Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton_Acceder.setBackground(new java.awt.Color(153, 153, 255));
@@ -81,6 +82,7 @@ public class Login extends javax.swing.JFrame {
         txt_password.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txt_password.setForeground(new java.awt.Color(255, 255, 255));
         txt_password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_password.setToolTipText("Password");
         txt_password.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 370, 210, -1));
 
@@ -88,6 +90,7 @@ public class Login extends javax.swing.JFrame {
         txt_user.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         txt_user.setForeground(new java.awt.Color(255, 255, 255));
         txt_user.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_user.setToolTipText("User Name");
         txt_user.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         getContentPane().add(txt_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 330, 210, -1));
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 650));

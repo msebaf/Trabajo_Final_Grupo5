@@ -13,31 +13,45 @@ import java.util.ArrayList;
  */
 public class Propietario {
    private int idPropietario;
-   private int DNI;
-   private int telefono;
+   private long DNI;
+   private long telefono;
    private String apellidoPropietario;
    private String nombrePropietario;
    private String domicilio;
+   private boolean estado;
    public ArrayList<Propiedad_Inmueble> propiedades;
 
-    public Propietario(int idPropietario, int DNI, int telefono, String apellidoPropietario, String nombrePropietario, String domicilio, ArrayList<Propiedad_Inmueble> propiedades) {
+    public Propietario(int idPropietario, long DNI, long telefono, String apellidoPropietario, String nombrePropietario, String domicilio, boolean estado, ArrayList<Propiedad_Inmueble> propiedades) {
         this.idPropietario = idPropietario;
         this.DNI = DNI;
         this.telefono = telefono;
         this.apellidoPropietario = apellidoPropietario;
         this.nombrePropietario = nombrePropietario;
         this.domicilio = domicilio;
+        this.estado = estado;
         this.propiedades = propiedades;
     }
 
-    public Propietario(int DNI, int telefono, String apellidoPropietario, String nombrePropietario, String domicilio, ArrayList<Propiedad_Inmueble> propiedades) {
+    public Propietario(long DNI, long telefono, String apellidoPropietario, String nombrePropietario, String domicilio, boolean estado, ArrayList<Propiedad_Inmueble> propiedades) {
         this.DNI = DNI;
         this.telefono = telefono;
         this.apellidoPropietario = apellidoPropietario;
         this.nombrePropietario = nombrePropietario;
         this.domicilio = domicilio;
+        this.estado = estado;
         this.propiedades = propiedades;
     }
+
+    public Propietario(int idPropietario, long DNI, long telefono, String apellidoPropietario, String nombrePropietario, String domicilio, boolean estado) {
+        this.idPropietario = idPropietario;
+        this.DNI = DNI;
+        this.telefono = telefono;
+        this.apellidoPropietario = apellidoPropietario;
+        this.nombrePropietario = nombrePropietario;
+        this.domicilio = domicilio;
+        this.estado = estado;
+    }
+
 
     public Propietario() {
     }
@@ -54,15 +68,15 @@ public class Propietario {
         return DNI;
     }
 
-    public void setDNI(int DNI) {
+    public void setDNI(long DNI) {
         this.DNI = DNI;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 
@@ -90,6 +104,14 @@ public class Propietario {
         this.domicilio = domicilio;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     public ArrayList<Propiedad_Inmueble> getPropiedades() {
         return propiedades;
     }
@@ -98,11 +120,13 @@ public class Propietario {
         this.propiedades = propiedades;
     }
 
+    
+
     @Override
     public String toString() {
-        return  DNI + ", " + apellidoPropietario + ", " + nombrePropietario;
+        return  DNI + "," + apellidoPropietario + "," + nombrePropietario ;
     }
-    
-    
+
+  
     
 }

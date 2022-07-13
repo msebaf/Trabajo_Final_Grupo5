@@ -29,13 +29,6 @@ import t_final_inmobiliaria_g5.Propietario;
 
 
 
-
-
-
-
-
-
-
 /**
  *
  * @author mseba
@@ -53,26 +46,23 @@ public class PropietarioData {
         con = conexion.getConexion();
        
     } 
-    
-    
-    
-    
-    
+   
     
 // CREAR
     public boolean cargarPropietario(Propietario propietario){
         boolean agregar = true;
         String generadorCodigo ="";
-        String sql = "INSERT INTO `propietario` (`DNI`, `telefono`, `apellidoPropietario`, `nombrePropietario`, `domicilio`) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO propietario (DNI, telefono, apellidoPropietario, nombrePropietario, domicilio, activo) VALUES (?,?,?,?,?,?)";
         
         try {
               PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
               ps.setLong(1, propietario.getDNI());
-              ps.setInt(2, propietario.getTelefono());
+              ps.setLong(2, propietario.getTelefono());
               ps.setString(3, propietario.getApellidoPropietario());
               ps.setString(4, propietario.getNombrePropietario());
               ps.setString(5, propietario.getDomicilio());
+              ps.setBoolean(6, propietario.isEstado());
               
               ps.executeUpdate();
               ResultSet rs = ps.getGeneratedKeys();
@@ -107,33 +97,27 @@ public class PropietarioData {
         return agregar;  
     }
    
-        
-    
-    
-    
-    
-    
-    
-        
+      
         
 
      public Propietario buscarPropietario(long dni){
-        Propietario prop = new Propietario();
-        String sql = "SELECT * FROM propietario WHERE dni = "+ dni ;
+        Propietario prop = null;
+        
         try {
+            String sql = "SELECT * FROM propietario WHERE dni =? AND activo = 1" ;
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setLong(1,dni);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                
-                prop.setDNI(rs.getInt("DNI"));
-               
+                prop = new Propietario();
+                                       
                 prop.setIdPropietario(rs.getInt("idPropietario"));
-                prop.setDomicilio(rs.getString("domicilio"));
-               
+                 prop.setDNI(rs.getInt("DNI"));  
+                prop.setDomicilio(rs.getString("domicilio"));               
                 prop.setApellidoPropietario(rs.getString("apellidoPropietario"));
                 prop.setNombrePropietario(rs.getString("nombrePropietario"));
                 prop.setTelefono(rs.getInt("telefono"));
-                
+                prop.setEstado(rs.getBoolean("activo"));              
              
             }
             ps.close();
@@ -162,7 +146,7 @@ public class PropietarioData {
                 prop.setApellidoPropietario(rs.getString("apellidoPropietario"));
                 prop.setNombrePropietario(rs.getString("nombrePropietario"));
                 prop.setTelefono(rs.getInt("telefono"));
-                
+                prop.setEstado(rs.getBoolean("activo"));
              
             }
             ps.close();
@@ -173,9 +157,8 @@ public class PropietarioData {
         
         return prop;
     }
-        
-         
-     public ArrayList<Propiedad_Inmueble> listarPropiedadesDePropietarioPorDni(long DNI){
+      
+    public ArrayList<Propiedad_Inmueble> listarPropiedadesDePropietarioPorDni(long DNI){
 
              ArrayList<Propiedad_Inmueble> propie= new ArrayList<>();
             Conexion conexion = new Conexion();
@@ -211,14 +194,13 @@ public class PropietarioData {
             return propie;
 
     		}
-          
-        
-        
-
-         
-public List listaTodosPropietarios(){
+      
+    
+    
+     
+     public List listaTodosPropietarios(){
   List<Propietario> datos = new ArrayList<>();
-  String sql = "SELECT * FROM propietario";
+  String sql = "SELECT * FROM propietario WHERE activo =1";
       try {
          PreparedStatement ps = con.prepareStatement(sql);
          ResultSet rs = ps.executeQuery();
@@ -229,6 +211,7 @@ public List listaTodosPropietarios(){
             pro.setApellidoPropietario(rs.getString("apellidoPropietario"));
             pro.setNombrePropietario(rs.getString("nombrePropietario"));
             pro.setDomicilio(rs.getString("domicilio"));
+            pro.setEstado(rs.getBoolean("activo"));
             datos.add(pro);
          }
          
@@ -237,16 +220,97 @@ public List listaTodosPropietarios(){
   
     return datos; 
   }
+     
+     
+     public List<Propiedad_Inmueble> obtenerInmuebles(Propietario propietario){
+    int idProp = propietario.getIdPropietario();
+        
+    ArrayList<Propiedad_Inmueble> pInmueble = new ArrayList<Propiedad_Inmueble>();
+    
+        try {
+         String sql = "SELECT * FROM propiedad_inmueble WHERE idPropietario = "+idProp; 
+         
+         PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Propiedad_Inmueble propiedad;
+            
+            while(rs.next()){
+            propiedad = new Propiedad_Inmueble();
+            propiedad.setIdPropiedad(rs.getInt("idPropiedad"));
+            propiedad.setCodigo(rs.getInt("codigo")+"");
+            propiedad.setDireccion(rs.getString("direccion"));
+            propiedad.setZona(rs.getString("zona"));
+            propiedad.setTipo(rs.getString("tipo"));
+            propiedad.setSuperficie(rs.getInt("superficie"));
+            propiedad.setPrecio(rs.getDouble("precio"));
+            propiedad.setVigente(rs.getBoolean("vigente"));
+            
+        }
+            
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,"Error al obtenr Inmuebles");
+        }
+     return pInmueble;
+    }
+    
+     public boolean modificarPropietario(Propietario propietario){
+     boolean modificado = false;
+     
+     String sql="UPDATE propietario SET dni=?, telefono=?, apellidoPropietario=?, nombrePropietario=?, domicilio=?, activo =? WHERE idPropietario=?";
+     
+         try {
+             PreparedStatement ps = con.prepareStatement(sql);
+             
+             ps.setLong(1, propietario.getDNI());
+             ps.setLong(2, propietario.getTelefono());
+             ps.setString(3, propietario.getApellidoPropietario());
+             ps.setString(4, propietario.getNombrePropietario());
+             ps.setString(5, propietario.getDomicilio());
+             ps.setBoolean(6, propietario.isEstado());
+             ps.setInt(7, propietario.getIdPropietario());
+             
+             if(ps.executeUpdate()!=0){
+               modificado = true;  
+             }
+             ps.close();
+             
+         } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, "Revisar de sintaxis ");  
+         }  
+        return modificado;
+      }
+     
+     
+      public boolean borrarPropietario(int idPropietario){
+      boolean borrado = false;
       
+      String sql = "UPDATE propietario SET activo = 0 WHERE idPropietario =?";
       
+           try {
+         PreparedStatement pstm = con.prepareStatement(sql);
+         pstm.setInt(1,idPropietario);
+         
+         if(pstm.executeUpdate() != 0){
+             borrado= true;
+             JOptionPane.showMessageDialog(null,"Cliente Eliminado");
+         }
+         pstm.close();
+         
+     } catch (SQLException e) {
+         JOptionPane.showMessageDialog(null, "Error revise sintaxis ");
+     }     
+     return borrado;
+ }
+   
+      
+          
+        
+            
+      
+        
       
        /*
-      
- // MODIFICAR     
-    public void modificarPropietario(Propietario propietario){
-        
-    }
-        
+  
         
     
     
@@ -256,10 +320,7 @@ public List listaTodosPropietarios(){
     
         
 // BORRAR  // NO HACER ESTE METODOD
-    public void borrarPropietario(Propietario propietario){
-        
-    }        
-        
+     
         
         
         

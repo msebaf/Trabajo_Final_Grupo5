@@ -38,7 +38,7 @@ public class InquilinoData {
  public boolean agregarInquilino(Inquilino inquilino){
      boolean agregar = true;
      
-     String sql = "INSERT INTO inquilino(dni, apellido, nombre, cuit, telefono, trabajo,apellidoGarante,nombreGarante,dniGarante) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+     String sql = "INSERT INTO inquilino(dni, apellido, nombre, cuit, telefono, trabajo,apellidoGarante,nombreGarante,dniGarante,activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                    
      try {
          PreparedStatement pstm = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -51,7 +51,7 @@ public class InquilinoData {
          pstm.setString(7,inquilino.getApellidoGarante());
          pstm.setString(8,inquilino.getNombreGarante());
          pstm.setLong(9,inquilino.getDniGarante()); 
-         
+         pstm.setBoolean(10,inquilino.isEstado());            
          pstm.executeUpdate();
          ResultSet rs = pstm.getGeneratedKeys();
          
@@ -78,7 +78,7 @@ public class InquilinoData {
  public boolean bajaInquilino(int idInquilino){
      boolean borrado = false;
      
-     String sql = "DELETE FROM inquilino WHERE idInquilino = ?"; // se podria borrar por DNI tambien
+     String sql = "UPDATE inquilino SET activo = 0 WHERE idInquilino = ?"; // se podria borrar por DNI tambien
      
      try {
          PreparedStatement pstm = cn.prepareStatement(sql);
@@ -101,7 +101,7 @@ public class InquilinoData {
     Inquilino inquilino = null; 
     
        try {
-           String sql = "SELECT* FROM inquilino WHERE dni =?";
+           String sql = "SELECT* FROM inquilino WHERE dni =? AND activo = 1";
            PreparedStatement pstm = cn.prepareStatement(sql);
            pstm.setLong(1,dni);
            ResultSet res = pstm.executeQuery();
@@ -109,15 +109,16 @@ public class InquilinoData {
            while(res.next()){
             inquilino = new Inquilino();
             inquilino.setIdInquilino(res.getInt("idInquilino"));
-            inquilino.setDni(res.getInt("dni"));
+            inquilino.setDni(res.getLong("dni"));
             inquilino.setApellido(res.getString("apellido"));
-            inquilino.setApellido(res.getString("nombre"));
-            inquilino.setCuit(res.getInt("cuit"));
-            inquilino.setTelefono(res.getInt("telefono"));
+            inquilino.setNombre(res.getString("nombre"));
+            inquilino.setCuit(res.getLong("cuit"));
+            inquilino.setTelefono(res.getLong("telefono"));
             inquilino.setTrabajo(res.getString("trabajo"));            
             inquilino.setApellidoGarante(res.getString("apellidoGarante"));
             inquilino.setNombreGarante(res.getString("nombreGarante"));
-            inquilino.setDniGarante(res.getInt("dniGarante"));
+            inquilino.setDniGarante(res.getLong("dniGarante"));
+            inquilino.setEstado(res.getBoolean("activo"));
             
             
             //ver los demas atributos
@@ -135,7 +136,7 @@ public class InquilinoData {
         
     boolean modificado = false;   
        
-     String sql = "UPDATE inquilino SET dni= ?, apellido= ? ,nombre= ? ,cuit= ? ,telefono= ? ,trabajo= ?, apellidoGarante= ?, nombreGarante= ?, dniGarante= ? WHERE idInquilino= ?" ;
+     String sql = "UPDATE inquilino SET dni= ?, apellido= ? ,nombre= ? ,cuit= ? ,telefono= ? ,trabajo= ?, apellidoGarante= ?, nombreGarante= ?, dniGarante= ?, activo = ? WHERE idInquilino= ?" ;
                  
        try {
            PreparedStatement pstm = cn.prepareStatement(sql);
@@ -149,7 +150,8 @@ public class InquilinoData {
            pstm.setString(7, inquilino.getApellidoGarante());
            pstm.setString(8, inquilino.getNombreGarante());
            pstm.setLong(9, inquilino.getDniGarante());
-           pstm.setInt(10, inquilino.getIdInquilino());
+           pstm.setBoolean(10,inquilino.isEstado());  
+           pstm.setInt(11, inquilino.getIdInquilino());
            
            if(pstm.executeUpdate()!=0){
                modificado = true;
@@ -184,7 +186,7 @@ public class InquilinoData {
             }
           
       } catch (SQLException e) {
-    
+       JOptionPane.showMessageDialog(null,"Error al obtenr Inmuebles");
       }
    
    return pInmuebles;
@@ -192,22 +194,23 @@ public class InquilinoData {
   
   public List listaTodosInquilinos(){
   List<Inquilino> datos = new ArrayList<>();
-  String sql = "SELECT * FROM inquilino";
+  String sql = "SELECT * FROM inquilino WHERE activo =1 ";
       try {
          PreparedStatement ps = cn.prepareStatement(sql);
          ResultSet rs = ps.executeQuery();
          while(rs.next()){
             Inquilino inq = new Inquilino(); 
             inq.setIdInquilino(rs.getInt("idInquilino"));//puede ser el numer de la columna
-            inq.setDni(rs.getInt("dni"));
+            inq.setDni(rs.getLong("dni"));
             inq.setApellido(rs.getString("apellido"));
             inq.setNombre(rs.getString("nombre"));
-            inq.setCuit(rs.getInt("cuit"));
-            inq.setTelefono(rs.getInt("telefono"));
+            inq.setCuit(rs.getLong("cuit"));
+            inq.setTelefono(rs.getLong("telefono"));
             inq.setTrabajo(rs.getString("trabajo"));
             inq.setApellidoGarante(rs.getString("apellidoGarante"));
             inq.setNombreGarante(rs.getString("nombreGarante"));
-            inq.setDniGarante(rs.getInt("dniGarante"));
+            inq.setDniGarante(rs.getLong("dniGarante"));
+            inq.setEstado(rs.getBoolean("activo"));
             datos.add(inq);
          }
          
@@ -230,15 +233,16 @@ public class InquilinoData {
                
            inquilino = new Inquilino();    
            inquilino.setIdInquilino(res.getInt("idInquilino"));
-           inquilino.setDni(res.getInt("dni"));
+           inquilino.setDni(res.getLong("dni"));
            inquilino.setApellido(res.getString("apellido"));
            inquilino.setApellido(res.getString("nombre"));
-           inquilino.setCuit(res.getInt("cuit"));
-           inquilino.setTelefono(res.getInt("telefono"));
+           inquilino.setCuit(res.getLong("cuit"));
+           inquilino.setTelefono(res.getLong("telefono"));
            inquilino.setTrabajo(res.getString("trabajo"));            
            inquilino.setApellidoGarante(res.getString("apellidoGarante"));
            inquilino.setNombreGarante(res.getString("nombreGarante"));
-           inquilino.setDniGarante(res.getInt("dniGarante"));
+           inquilino.setDniGarante(res.getLong("dniGarante"));
+           inquilino.setEstado(res.getBoolean("activo"));
        }
            pstm.close();
           

@@ -11,12 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import t_final_inmobiliaria_g5.ContratoAlquiler;
 import t_final_inmobiliaria_g5.Propiedad_Inmueble;
-import vistas.Vista_FormPropiedad;
+import t_final_inmobiliaria_g5.Propietario;
+
 
 /**
  *
@@ -363,6 +365,41 @@ public class Propiedad_Inmueble_Data {
          
              
          }
+         public List mostrarInmuebles(){
+         List<Propiedad_Inmueble> datos = new ArrayList<>();
+         Propietario propie;
+         Conexion conexion = new Conexion();  
+         PropietarioData pdta = new PropietarioData(conexion);
+         
+         String sql = "SELECT *FROM propiedad_inmueble";
+         
+             try {
+                 PreparedStatement pstm = con.prepareStatement(sql);
+                 ResultSet rs = pstm.executeQuery();
+                 
+                 while(rs.next()){
+                  Propiedad_Inmueble pin = new Propiedad_Inmueble();
+                  pin.setIdPropiedad(rs.getInt("idPropiedad"));
+                  pin.setCodigo(rs.getString("codigo"));
+                  pin.setDireccion(rs.getString("direccion"));
+                  pin.setZona(rs.getString("zona"));
+                  pin.setTipo(rs.getString("tipo"));
+                  pin.setSuperficie(rs.getDouble("superficie"));
+                  pin.setPrecio(rs.getDouble("precio"));
+                  pin.setPropietario(pdta.buscarPropietarioPorID(rs.getInt("idPropietario")));
+                  pin.setVigente(rs.getBoolean("vigente"));
+                  
+                  datos.add(pin);
+                 }
+                 
+             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null,"Problemas al mostrar Inmuebles");
+             }
+         
+          return datos;
+         }
+         
                  
     }
+
 
