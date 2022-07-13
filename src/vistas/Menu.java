@@ -9,6 +9,7 @@ import conexion.Conexion;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import javax.swing.JDesktopPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -241,6 +242,16 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
+
+    public JDesktopPane getEscritorio() {
+        return escritorio;
+    }
+
+    public void setEscritorio(JDesktopPane escritorio) {
+        this.escritorio = escritorio;
+    }
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import t_final_inmobiliaria_g5.ContratoAlquiler;
 import t_final_inmobiliaria_g5.Propiedad_Inmueble;
 import vistas.Vista_FormPropiedad;
 
@@ -148,6 +149,44 @@ public class Propiedad_Inmueble_Data {
             return disponibles;
         }
         
+                public ArrayList<Propiedad_Inmueble> ListarPropiedadesParaAlquilar(PropietarioData proData){
+            ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
+            Conexion conexion = new Conexion();   
+              ContratoAlquilerData conAdata = new ContratoAlquilerData(conexion);
+          
+             String sql = "SELECT * FROM propiedad_inmueble" ;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                
+                Propiedad_Inmueble prop = new Propiedad_Inmueble();
+                prop.setDireccion(rs.getString("direccion"));
+              
+                prop.setIdPropiedad(rs.getInt("idPropiedad"));
+                prop.setPrecio(rs.getDouble("precio"));
+                prop.setPropietario(proData.buscarPropietarioPorID(rs.getInt("idPropietario")));
+                prop.setSuperficie(rs.getDouble("superficie"));
+                prop.setTipo(rs.getString("tipo"));
+                prop.setZona(rs.getString("zona"));
+                prop.setCodigo(rs.getString("codigo"));
+                boolean alquilable = true;
+                ArrayList<ContratoAlquiler> alquiladas = conAdata.mostrarVigentes();
+                for (ContratoAlquiler alquilada : alquiladas) {
+                    if(alquilada.getPropiedad().equals(prop)){
+                        alquilable=false;
+                    }
+                }
+                 if (alquilable=true){disponibles.add(prop);}
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return disponibles;
+        }
+        
+        
         public ArrayList<Propiedad_Inmueble> buscarInmPorCaract(String uso, String zona, String supMinima, String precioMaximo){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
             try {
@@ -171,7 +210,7 @@ public class Propiedad_Inmueble_Data {
                
                 prop.setIdPropiedad(rs.getInt("idPropiedad"));
                 prop.setPrecio(rs.getDouble("precio"));
-               // prop.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
+               //prop.setPropietario(buscarPropietarioPorID(rs.getInt("idPropietario")));
                 prop.setSuperficie(rs.getDouble("superficie"));
                 prop.setTipo(rs.getString("tipo"));
                 prop.setZona(rs.getString("zona"));

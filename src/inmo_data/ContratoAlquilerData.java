@@ -276,17 +276,18 @@ public class ContratoAlquilerData {
               Propiedad_Inmueble prop;
               Conexion conexion = new Conexion();   
               Propiedad_Inmueble_Data cn = new Propiedad_Inmueble_Data(conexion);
+              InquilinoData iDAta = new InquilinoData(conexion);
               
               
               
-              String sql = "SELECT * FROM `contratoalquiler` WHERE vigente = 1 ";
+              String sql = "SELECT * FROM `contratoalquiler` WHERE fecha_Final <  "+ Date.valueOf(LocalDate.now().plusDays(1));
               try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 ContratoAlquiler contrato = new ContratoAlquiler();
                 contrato.setCodContrato(rs.getString("codContrato"));
-                contrato.setInquilino(new Inquilino()); // completar despues con inquilino
+                contrato.setInquilino(iDAta.obtenerInquilinoXid(rs.getInt("idInquilino")));
                 contrato.setPropiedad(prop= cn.buscarInmPorId(rs.getInt("idPropiedad")));
                 contrato.setVendedor(rs.getString("vendedor"));
                 contrato.setFecha_Final(rs.getDate("fecha_Final").toLocalDate());

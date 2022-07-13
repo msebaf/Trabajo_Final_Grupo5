@@ -13,8 +13,11 @@ import inmo_data.Tipos;
 import inmo_data.Tipos.tipos;
 import inmo_data.Zonas;
 import inmo_data.Zonas.zonas;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import t_final_inmobiliaria_g5.ContratoAlquiler;
@@ -38,6 +41,8 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         llenarComboTipos();
         cargarPropiedades();
         modelo= new DefaultTableModel();
+        
+        
         armarCabeceraTabla();
         
     }
@@ -125,6 +130,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         JTabla = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         codBorrar = new javax.swing.JTextField();
@@ -303,6 +309,11 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        JTabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTabla);
 
         jButton3.setText("Consultar");
@@ -316,6 +327,13 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setText("Alquilar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
             }
         });
 
@@ -345,7 +363,11 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jButton11))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -369,7 +391,9 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                     .addComponent(JTpMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton11)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
@@ -472,8 +496,12 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         });
 
         jButton7.setText("Salir");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
-        JCinms.setSelectedIndex(-1);
         JCinms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCinmsActionPerformed(evt);
@@ -657,6 +685,15 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             ArrayList<ContratoAlquiler> contratosProp = contData.buscarContratosPorInmueble(propiedad);
             if(contratosProp.size()>0){
                 for (ContratoAlquiler contrato : contratosProp) {
+                    JButton boton = new JButton("Alquilar");
+                    boton.setSize(100,45);
+                    boton.setVisible(true);
+                    ActionListener listener = new ActionListener(){ 
+   public void actionPerformed(ActionEvent e) { 
+     
+   }         
+};
+boton.addActionListener(listener);
                     if(contrato.getFecha_Final().isAfter(testigo) || contrato.getFecha_Final().isEqual(testigo)){
                         disponible = contrato.getFecha_Final().plusDays(1).toString();
                         testigo = contrato.getFecha_Final();
@@ -725,7 +762,32 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             ModZona.setSelectedItem(prop.getZona());        // TODO add your handling code here:
     }//GEN-LAST:event_JCinmsActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+   String alquilarDesdeTabla="";
+    private void JTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablaMouseClicked
+        
+        alquilarDesdeTabla = (String)JTabla.getValueAt(JTabla.getSelectedRow(), 0);
+    }//GEN-LAST:event_JTablaMouseClicked
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        if(!alquilarDesdeTabla.equals("")){
+        Vista_Contrato cont = new Vista_Contrato(conexion);
+         cont.setVisible(true);
+        this.getDesktopPane().add(cont);
+        this.getDesktopPane().repaint();
+        this.getDesktopPane().moveToFront(cont); 
+        cont.getJTcodBusc().setText(alquilarDesdeTabla);
+        Propiedad_Inmueble_Data proData = new Propiedad_Inmueble_Data(conexion);
+                PropietarioData propie = new PropietarioData(conexion);
+                Propiedad_Inmueble propi = proData.buscarInmPorCodigo(alquilarDesdeTabla,propie);
+               cont.getJCpropiedades().setSelectedItem(propi);
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+        else {JOptionPane.showMessageDialog(this, "Debe elegir un inmueble");}
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Propiedad_Inmueble> JCinms;
     private javax.swing.JComboBox<tipos> JMtipo;
@@ -748,6 +810,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     private javax.swing.JTextField codBorrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

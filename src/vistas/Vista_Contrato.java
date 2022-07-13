@@ -18,6 +18,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import t_final_inmobiliaria_g5.ContratoAlquiler;
 import t_final_inmobiliaria_g5.Inquilino;
@@ -235,7 +238,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(JDinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(JDfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -342,6 +345,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         });
 
         jButton8.setText("Salir");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -360,7 +368,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,6 +396,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         });
 
         jButton7.setText("Salir");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -411,7 +424,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(208, 208, 208)
                         .addComponent(JCfin, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -479,6 +492,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(JTabla);
 
         JRBvigente.setText("Vigentes");
+        JRBvigente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JRBvigenteActionPerformed(evt);
+            }
+        });
 
         JRBvencidos.setText("Vencidos");
         JRBvencidos.addActionListener(new java.awt.event.ActionListener() {
@@ -537,7 +555,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JBlimpiar2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +594,10 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -616,17 +637,30 @@ ZoneId defaultZoneId2 = ZoneId.systemDefault();
 Instant instant2 = fin.toInstant();
 LocalDate localFinal = instant2
     .atZone(defaultZoneId).toLocalDate();
-       
+        ContratoAlquilerData coAlData = new ContratoAlquilerData(conexion);
+        ArrayList<ContratoAlquiler> contratosDelInmueble = coAlData.buscarContratosPorInmueble((Propiedad_Inmueble)JCpropiedades.getSelectedItem());
+        boolean disponible = true;
+        for (ContratoAlquiler contratoAlquiler : contratosDelInmueble) {
+            if(localInicio.isBefore(contratoAlquiler.getFecha_Final().plusDays(1))){
+            disponible = false;
+            }
+            
+        }
+        if(disponible){
         ContratoAlquiler nuevoContrato = new ContratoAlquiler(JTvendedor.getText(),(Propiedad_Inmueble) JCpropiedades.getSelectedItem(), (Inquilino) JCinquilinos.getSelectedItem(), localInicio, localFinal);   
-         ContratoAlquilerData coAlData = new ContratoAlquilerData(conexion);
+        
          System.out.println(nuevoContrato.getFecha_Inicio());
          System.out.println(nuevoContrato.getFecha_Final());
          coAlData.firmarContrato(nuevoContrato);
          limpiarRegistros();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Es imposible alquilar en las fechas elegidas");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -651,7 +685,33 @@ LocalDate localFinal = instant2
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void JRBvencidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBvencidosActionPerformed
-        // TODO add your handling code here:
+         borraFilasTabla();
+        if((JRBvencidos.isSelected()&& JRBvigente.isSelected()) || (!JRBvencidos.isSelected()&& !JRBvigente.isSelected())){
+          for (ContratoAlquiler contrato : contratos) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+         }
+         }
+         else if(JRBvencidos.isSelected()&& !JRBvigente.isSelected()){
+             ArrayList<ContratoAlquiler> arrayAuxiliar = new ArrayList<>();
+             for (ContratoAlquiler contrato : contratos) {
+                 if(contrato.getFecha_Final().isBefore(LocalDate.now()))
+                     arrayAuxiliar.add(contrato);
+             }
+              for (ContratoAlquiler contrato : arrayAuxiliar) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+         }
+         }
+         else if(!JRBvencidos.isSelected()&& JRBvigente.isSelected()){
+             ArrayList<ContratoAlquiler> arrayAuxiliar = new ArrayList<>();
+             for (ContratoAlquiler contrato : contratos) {
+                 if((contrato.getFecha_Final().isAfter(LocalDate.now())|| contrato.getFecha_Final().isEqual(LocalDate.now()))){
+                     arrayAuxiliar.add(contrato);
+             }
+             }
+              for (ContratoAlquiler contrato : arrayAuxiliar) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+         }
+         }        // TODO add your handling code here:
     }//GEN-LAST:event_JRBvencidosActionPerformed
 
     private void JCinqui2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCinqui2ActionPerformed
@@ -660,33 +720,45 @@ LocalDate localFinal = instant2
               // TODO add your handling code here:
     }//GEN-LAST:event_JCinqui2ActionPerformed
 
+    ArrayList<ContratoAlquiler> contratos;
+    
     private void JBbusXinqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbusXinqActionPerformed
-       limpiarRegistros();
+       borraFilasTabla();
+        limpiarRegistros();
         ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
-        ArrayList<ContratoAlquiler> contratos = contData.mostrarContratosPorInquilino((Inquilino)JCinqui2.getSelectedItem());  
+      contratos = contData.mostrarContratosPorInquilino((Inquilino)JCinqui2.getSelectedItem());  
         for (ContratoAlquiler contrato : contratos) {
              modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
             
         }
-                
+           JRBvencidos.setSelected(true);
+           JRBvigente.setSelected(true);
 // TODO add your handling code here:
     }//GEN-LAST:event_JBbusXinqActionPerformed
 
     private void JBconXpropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBconXpropiedadActionPerformed
-            ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
-        ArrayList<ContratoAlquiler> contratos = contData.buscarContratosPorInmueble((Propiedad_Inmueble)JCpropiedades2.getSelectedItem());  
+        borraFilasTabla();
+        ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
+        contratos = contData.buscarContratosPorInmueble((Propiedad_Inmueble)JCpropiedades2.getSelectedItem());  
         for (ContratoAlquiler contrato : contratos) {
              modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
         // TODO add your handling code here:
     }//GEN-LAST:event_JBconXpropiedadActionPerformed
+      JRBvencidos.setSelected(true);
+           JRBvigente.setSelected(true);
     }
     private void JBbusXpropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbusXpropietarioActionPerformed
-             ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
-        ArrayList<ContratoAlquiler> contratos = contData.mostrarContratosPorPropietario((Propietario)JCpropietarios.getSelectedItem());  
+        borraFilasTabla();
+        ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
+         contratos = contData.mostrarContratosPorPropietario((Propietario)JCpropietarios.getSelectedItem());  
         for (ContratoAlquiler contrato : contratos) {
              modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});       // TODO add your handling code here:
     }//GEN-LAST:event_JBbusXpropietarioActionPerformed
+       JRBvencidos.setSelected(true);
+           JRBvigente.setSelected(true);
     }
+    
+    
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
       dispose();
         // TODO add your handling code here:
@@ -699,6 +771,61 @@ LocalDate localFinal = instant2
     private void JBlimpiar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiar2ActionPerformed
          limpiarRegistros();        // TODO add your handling code here:
     }//GEN-LAST:event_JBlimpiar2ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void JRBvigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBvigenteActionPerformed
+         borraFilasTabla();
+        if((JRBvencidos.isSelected()&& JRBvigente.isSelected()) || (!JRBvencidos.isSelected()&& !JRBvigente.isSelected())){
+          for (ContratoAlquiler contrato : contratos) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+         }
+         }
+         else if(JRBvencidos.isSelected()&& !JRBvigente.isSelected()){
+             ArrayList<ContratoAlquiler> arrayAuxiliar = new ArrayList<>();
+             for (ContratoAlquiler contrato : contratos) {
+                 if(contrato.getFecha_Final().isBefore(LocalDate.now()))
+                     arrayAuxiliar.add(contrato);
+             }
+              for (ContratoAlquiler contrato : arrayAuxiliar) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+         }
+         }
+         else if(!JRBvencidos.isSelected()&& JRBvigente.isSelected()){
+             ArrayList<ContratoAlquiler> arrayAuxiliar = new ArrayList<>();
+             for (ContratoAlquiler contrato : contratos) {
+                 if((contrato.getFecha_Final().isAfter(LocalDate.now())|| contrato.getFecha_Final().isEqual(LocalDate.now()))){
+                     arrayAuxiliar.add(contrato);
+             }
+             }
+              for (ContratoAlquiler contrato : arrayAuxiliar) {
+             modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
+         }
+         }
+             // TODO add your handling code here:
+    }//GEN-LAST:event_JRBvigenteActionPerformed
+
+    public void setJTcodBusc(JTextField JTcodBusc) {
+        this.JTcodBusc = JTcodBusc;
+    }
+
+    public JTextField getJTcodBusc() {
+        return JTcodBusc;
+    }
+
+    public JComboBox<Propiedad_Inmueble> getJCpropiedades() {
+        return JCpropiedades;
+    }
+
+    public void setJCpropiedades(JComboBox<Propiedad_Inmueble> JCpropiedades) {
+        this.JCpropiedades = JCpropiedades;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
