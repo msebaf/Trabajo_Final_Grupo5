@@ -164,6 +164,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jLbCuit4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLbCuit4.setText("Cuit:");
 
+        jLabel1.setFont(new java.awt.Font("Myanmar Text", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("GARANTE");
 
@@ -175,6 +176,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jLbDniGarante.setFont(new java.awt.Font("Montserrat Medium", 0, 14)); // NOI18N
         jLbDniGarante.setText("DNI:");
 
         jLbTelefono4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -191,6 +193,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jLbApellidoGarante.setFont(new java.awt.Font("Montserrat Medium", 0, 14)); // NOI18N
         jLbApellidoGarante.setText("Apellido: ");
 
         JTtelefono.setBackground(new java.awt.Color(204, 204, 204));
@@ -201,6 +204,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jLbNombreGarante.setFont(new java.awt.Font("Montserrat Medium", 0, 14)); // NOI18N
         jLbNombreGarante.setText("Nombre:");
 
         jLbTrabajo4.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
@@ -237,7 +241,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 48, Short.MAX_VALUE)
+                .addGap(0, 77, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -268,18 +272,17 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(102, 102, 102)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLbApellidoGarante, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLbDniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLbNombreGarante)))
-                        .addGap(42, 42, 42)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLbApellidoGarante)
+                            .addComponent(jLbNombreGarante)
+                            .addComponent(jLbDniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JTapellido_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JTdni_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JTnombre_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +328,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLbApellidoGarante)
                     .addComponent(JTapellido_garante, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -459,6 +462,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             }
         });
 
+        jChBActivoM.setSelected(true);
         jChBActivoM.setText("Activo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -476,7 +480,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addComponent(jbLimpiarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbBorrarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(jbSalirModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -625,19 +629,19 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                     .addComponent(jbSalirListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCBInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jCBInquilino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -649,7 +653,7 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
                         .addComponent(jBImprimir)
                         .addGap(104, 104, 104)
                         .addComponent(jbSalirListar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de Propiedas", jPanel5);
@@ -933,6 +937,23 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             JTapellido_garante.setBackground(Color.red);
             validacion++;
         }
+         if (JTcuit_dni.getText().equals("")) {
+            JTcuit_dni.setBackground(Color.red);
+            validacion++;
+        }
+         if (JTdni.getText().equals("")) {
+            JTdni.setBackground(Color.red);
+            validacion++;
+        } 
+         if (JTdni_garante.getText().equals("")) {
+            JTdni_garante.setBackground(Color.red);
+            validacion++;
+        }
+         if (JTtelefono.getText().equals("")) {
+            JTtelefono.setBackground(Color.red);
+            validacion++;
+        } 
+         
 
         if(validacion == 0 ){
             
@@ -951,6 +972,18 @@ public class Vista_FormInquilino extends javax.swing.JInternalFrame {
             InquilinoData iData = new InquilinoData(conexion);
             iData.agregarInquilino(inqui);
             limpiarCamposGuardar();
+            
+             JTnombre.setBackground(Color.LIGHT_GRAY);
+             JTapellido.setBackground(Color.LIGHT_GRAY);
+             JTtrabajo.setBackground(Color.LIGHT_GRAY);
+             JTcuit_dni.setBackground(Color.LIGHT_GRAY);
+             JTdni.setBackground(Color.LIGHT_GRAY);
+             JTtelefono.setBackground(Color.LIGHT_GRAY);
+             
+             JTdni_garante.setBackground(Color.white);
+             JTnombre_garante.setBackground(Color.white);
+             JTapellido_garante.setBackground(Color.white);
+            
         }else{
             JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
         }

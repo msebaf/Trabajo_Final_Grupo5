@@ -15,6 +15,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import conexion.Conexion;
 import inmo_data.Propiedad_Inmueble_Data;
 import inmo_data.PropietarioData;
+import java.awt.Color;
 import java.awt.Font;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -202,7 +203,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(JTdomicilio)
                             .addComponent(JTnombre)
@@ -341,7 +342,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                 .addComponent(jActualizarModicar1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jbLimpiarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBorrarModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,21 +459,21 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jCPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBSalirLista, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBImprimir1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBImprimir1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jBSalirLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,7 +500,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 695, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -552,18 +553,55 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JTtelefonoFocusLost
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
- 
+        int validacion =0;
         Propietario prop = new Propietario();
+        prop.setDNI(Long.parseLong(JTdni.getText()));
+        prop.setTelefono(Long.parseLong(JTtelefono.getText()));
         prop.setApellidoPropietario(JTapellido.getText());
-        prop.setDomicilio(JTdomicilio.getText());
-        prop.setDNI(Integer.parseInt(JTdni.getText()));
         prop.setNombrePropietario(JTnombre.getText());
-        prop.setTelefono(Integer.parseInt(JTtelefono.getText()));
+        prop.setDomicilio(JTdomicilio.getText());      
+        
         prop.setEstado(jChBActivo.isSelected());
-
+        
+          if (JTdni.getText().equals("")) {
+            JTdni.setBackground(Color.red);
+            validacion++;
+        } 
+            if (JTtelefono.getText().equals("")) {
+            JTtelefono.setBackground(Color.red);
+            validacion++;
+        }  
+            
+          if (JTapellido.getText().equals("")) {
+            JTapellido.setBackground(Color.red);
+            validacion++;
+        }    
+        
+         if (JTnombre.getText().equals("")) {
+            JTnombre.setBackground(Color.red);
+            validacion++;
+        }
+        
+           if (JTdomicilio.getText().equals("")) {
+            JTdomicilio.setBackground(Color.red);
+            validacion++;
+        }
+        
+         if(validacion == 0 ){
+       
         PropietarioData propietarioData = new PropietarioData(conexion);
         propietarioData.cargarPropietario(prop);
         limpiarCamposGuardar();
+        
+         JTnombre.setBackground(Color.LIGHT_GRAY);
+         JTapellido.setBackground(Color.LIGHT_GRAY);
+         JTtelefono.setBackground(Color.LIGHT_GRAY);
+         JTdomicilio.setBackground(Color.LIGHT_GRAY);
+         JTdni.setBackground(Color.LIGHT_GRAY);
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jBGuardarActionPerformed
 
