@@ -93,10 +93,8 @@ public class ContratoAlquilerData {
           
           public void renovarContrato(ContratoAlquiler contrato, LocalDate nuevoFinal){
               LocalDate fianlAnt = contrato.getFecha_Final();
-              if(fianlAnt.isAfter(nuevoFinal) || fianlAnt.isEqual(nuevoFinal)){
-                  JOptionPane.showMessageDialog(null, "La nueva fecha debe ser posterior a la fecha final vigente");
-              }
-              else{
+              if(LocalDate.now().isBefore(fianlAnt.plusDays(7))){
+              
               Date fFinal = Date.valueOf(nuevoFinal);
             
             String sql ="UPDATE `contratoalquiler` SET `fecha_Final` =  \""+ fFinal.toString() +"\" WHERE codContrato =\""+contrato.getCodContrato()+"\"";
@@ -108,6 +106,10 @@ public class ContratoAlquilerData {
           } catch (SQLException ex) {
               Logger.getLogger(ContratoAlquilerData.class.getName()).log(Level.SEVERE, null, ex);
           }
+              }
+              
+              else{
+                  JOptionPane.showMessageDialog(null, "El contrato no puede renovarse pasada una semana de su vencimiento, debe crear un nuevo contrato");
               }
           }
           public ContratoAlquiler buscarContrato(String codContrato){

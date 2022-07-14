@@ -61,7 +61,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
          modelo.addColumn(object);
             
         }
-        JTabla.setModel(modelo);
+        JTcontratos.setModel(modelo);
     }
 
     public void cargarPropiedades(){
@@ -177,11 +177,13 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         JCpropietarios = new javax.swing.JComboBox<>();
         JBbusXpropietario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JTabla = new javax.swing.JTable();
+        JTcontratos = new javax.swing.JTable();
         JRBvigente = new javax.swing.JRadioButton();
         JRBvencidos = new javax.swing.JRadioButton();
         jButton9 = new javax.swing.JButton();
         JBlimpiar2 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -244,15 +246,6 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(JDinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(JTvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(253, 253, 253)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
@@ -264,19 +257,21 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton10))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(29, 29, 29)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(JCpropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(JCinquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(43, 43, 43)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel6)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(95, 95, 95)
-                                    .addComponent(jLabel7))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JCpropiedades, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JCinquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(JDinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(115, 115, 115)
+                                .addComponent(jLabel7)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -298,15 +293,21 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel8))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(133, 133, 133)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(JTvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(287, 287, 287)
+                        .addComponent(jLabel1)))
                 .addGap(50, 117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(8, 8, 8)
                 .addComponent(JTvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -339,7 +340,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton10)
                     .addComponent(jButton4))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Subir Contrato", jPanel1);
@@ -487,7 +488,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             }
         });
 
-        JTabla.setModel(new javax.swing.table.DefaultTableModel(
+        JTcontratos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -498,7 +499,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(JTabla);
+        jScrollPane1.setViewportView(JTcontratos);
 
         JRBvigente.setText("Vigentes");
         JRBvigente.addActionListener(new java.awt.event.ActionListener() {
@@ -528,22 +529,29 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton11.setText("Rescindir");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setText("Renovar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBlimpiar2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton11)
+                .addGap(67, 67, 67)
                 .addComponent(JRBvigente)
-                .addGap(75, 75, 75)
+                .addGap(46, 46, 46)
                 .addComponent(JRBvencidos)
-                .addGap(217, 217, 217))
+                .addGap(61, 61, 61)
+                .addComponent(jButton12)
+                .addGap(162, 162, 162))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -564,6 +572,12 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                             .addComponent(JBconXpropiedad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(JBbusXpropietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(21, 21, 21))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(265, 265, 265)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBlimpiar2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,16 +598,18 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(JBbusXpropietario))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JRBvencidos)
-                    .addComponent(JRBvigente))
-                .addGap(36, 36, 36)
+                    .addComponent(JRBvigente)
+                    .addComponent(jButton11)
+                    .addComponent(jButton12))
+                .addGap(32, 32, 32)
                 .addComponent(JBlimpiar2)
-                .addGap(43, 43, 43)
+                .addGap(42, 42, 42)
                 .addComponent(jButton9)
-                .addGap(66, 66, 66))
+                .addGap(71, 71, 71))
         );
 
         jTabbedPane1.addTab("Buscar Contrato", jPanel4);
@@ -609,7 +625,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -850,6 +866,11 @@ LocalDate localFinal = instant2
              // TODO add your handling code here:
     }//GEN-LAST:event_JRBvigenteActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+           
+           
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     public void setJTcodBusc(JTextField JTcodBusc) {
         this.JTcodBusc = JTcodBusc;
     }
@@ -883,10 +904,10 @@ LocalDate localFinal = instant2
     private com.toedter.calendar.JDateChooser JDinicio;
     private javax.swing.JRadioButton JRBvencidos;
     private javax.swing.JRadioButton JRBvigente;
-    private javax.swing.JTable JTabla;
     private javax.swing.JTextField JTcodB;
     private javax.swing.JTextField JTcodBusc;
     private javax.swing.JTextField JTcodRes;
+    private javax.swing.JTable JTcontratos;
     private javax.swing.JTextField JTvendedor;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -894,6 +915,8 @@ LocalDate localFinal = instant2
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

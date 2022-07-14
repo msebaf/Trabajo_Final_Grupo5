@@ -730,6 +730,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             JTsup.setBackground(Color.white);
             JTdir.setBackground(Color.white);
              JTprecio.setBackground(Color.white);
+             limpiarRegistros();
             }
             
 

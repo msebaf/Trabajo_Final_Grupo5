@@ -523,7 +523,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
         }
         else{
             try {
-                int prueba = Integer.parseInt(JTdni.getText());
+                long prueba = Long.parseLong(JTdni.getText());
                 JTdni.setText(""+prueba);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "DNI debe ser un numero");
@@ -537,17 +537,17 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JTdniActionPerformed
 
     private void JTtelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTtelefonoFocusLost
-        if(JTdni.getText().length()==0){
+        if(JTtelefono.getText().length()==0){
             JOptionPane.showMessageDialog(this, "Debe ingresar un telefono de contacto");
-            JTdni.requestFocus();
+            JTtelefono.requestFocus();
         }
         else{
             try {
-                int prueba = Integer.parseInt(JTdni.getText());
+                long prueba = Long.parseLong(JTtelefono.getText());
 
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "telefono debe ser un numero");
-                JTdni.requestFocus();
+                JTtelefono.requestFocus();
             }
         }// TODO add your handling code here:
     }//GEN-LAST:event_JTtelefonoFocusLost
