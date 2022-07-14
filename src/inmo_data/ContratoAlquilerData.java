@@ -111,7 +111,8 @@ public class ContratoAlquilerData {
               }
           }
           public ContratoAlquiler buscarContrato(String codContrato){
-              ContratoAlquiler contrato = new ContratoAlquiler();
+              System.out.println(codContrato);
+              ContratoAlquiler contrato=null;
                Conexion conexion = new Conexion();   
               Propiedad_Inmueble_Data cn = new Propiedad_Inmueble_Data(conexion);
               InquilinoData inq = new InquilinoData(conexion);
@@ -120,7 +121,7 @@ public class ContratoAlquilerData {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-          
+                contrato= new ContratoAlquiler();
                 contrato.setCodContrato(rs.getString("codContrato"));
                 contrato.setInquilino(inq.buscarInquilino(rs.getLong("idInquilino"))); 
                 contrato.setPropiedad(cn.buscarInmPorId(rs.getInt("idPropiedad")));
@@ -132,6 +133,7 @@ public class ContratoAlquilerData {
                 
             }
               } catch (SQLException ex) {
+                
             Logger.getLogger(Propiedad_Inmueble_Data.class.getName()).log(Level.SEVERE, null, ex);
         }
               

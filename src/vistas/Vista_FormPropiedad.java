@@ -13,6 +13,7 @@ import inmo_data.Tipos;
 import inmo_data.Tipos.tipos;
 import inmo_data.Zonas;
 import inmo_data.Zonas.zonas;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -71,7 +72,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         PropietarioData proData =  new PropietarioData(conexion);
         ArrayList<Propiedad_Inmueble> propiedades = new ArrayList<>();
         Propiedad_Inmueble_Data piData = new Propiedad_Inmueble_Data(conexion);
-        propiedades = piData.buscarInmDisponibles(proData);
+        propiedades = piData.ListarPropiedades(proData);
         for (Propiedad_Inmueble propiedad : propiedades) {
             JCinms.addItem(propiedad);
         }
@@ -91,6 +92,29 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         JTabla.setModel(modelo);
     }
 
+           private void borraFilasTabla(){
+   if(modelo!=null){
+       int a =modelo.getRowCount()-1;
+
+           for(int i=a;i>=0;i--){
+   
+                modelo.removeRow(i );
+           }
+            }
+         }
+        public void limpiarRegistros(){
+            JTdir.setText("");
+            JTdniProp.setText("");
+            JTpMax.setText("");
+           
+            JTprecio.setText("");
+            JTsuoM.setText("");
+            JTsup.setText("");
+           
+            borraFilasTabla();
+            
+            
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,6 +140,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         JTprecio = new javax.swing.JTextField();
+        jButton12 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         JMzonas2 = new javax.swing.JComboBox<>();
@@ -130,6 +155,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         codBorrar = new javax.swing.JTextField();
@@ -210,47 +236,63 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Precio");
 
+        JTprecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                JTprecioFocusLost(evt);
+            }
+        });
+
+        jButton12.setText("Limpiar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(JMzonas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel5)))
-                                    .addGap(33, 33, 33))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(4, 4, 4)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(JMtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JTdir)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(JTsup, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addComponent(JTprecio, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(50, 50, 50)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(82, 82, 82)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTdniProp, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(219, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(JTdniProp, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JTdir)
+                                    .addComponent(JTsup)
+                                    .addComponent(JTprecio, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JMtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JMzonas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(241, 241, 241))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(65, 65, 65)))
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton12)
+                        .addGap(51, 51, 51)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,15 +317,16 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(JTsup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(JTprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(JTprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
+                    .addComponent(jButton12)
                     .addComponent(jButton2))
-                .addGap(41, 41, 41))
+                .addGap(168, 168, 168))
         );
 
         jTabbedPane1.addTab("Cargar Inmueble", jPanel1);
@@ -341,6 +384,13 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton13.setText("Limpiar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -362,15 +412,18 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                             .addComponent(JTpMax, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jButton11)
-                        .addGap(70, 70, 70)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(jButton11)
+                .addGap(35, 35, 35)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton13)
+                .addGap(30, 30, 30)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,8 +450,9 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton11)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(115, Short.MAX_VALUE))
+                    .addComponent(jButton4)
+                    .addComponent(jButton13))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inm por Caract.", jPanel2);
@@ -444,7 +498,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +600,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(255, 255, 255)
                                 .addComponent(jLabel12)))
-                        .addGap(0, 166, Short.MAX_VALUE)))
+                        .addGap(0, 210, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
@@ -641,6 +695,27 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            int camposCompletos=4;
+            if(JTdniProp.getText().length()==0){
+                camposCompletos--;
+                JTdniProp.setBackground(Color.red);
+            }
+            if(JTsup.getText().length()==0){
+                JTsup.setBackground(Color.red);
+                camposCompletos--;
+            }
+            if(JTdir.getText().length()==0){
+                JTdir.setBackground(Color.red);
+                camposCompletos--;
+            }
+            if(JTprecio.getText().length()==0){
+                JTprecio.setBackground(Color.red);
+                camposCompletos--;
+            }
+            if(camposCompletos<4){
+                JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+            }
+            else{
             Propiedad_Inmueble prop = new Propiedad_Inmueble();
             Propiedad_Inmueble_Data propieData = new Propiedad_Inmueble_Data(conexion);
             PropietarioData proData = new PropietarioData(conexion);
@@ -651,8 +726,11 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             prop.setPrecio(Double.parseDouble(JTprecio.getText()));
             prop.setPropietario(proData.buscarPropietario(Long.parseLong(JTdniProp.getText())));
             propieData.cargarInmueble(prop,Integer.parseInt(JTdniProp.getText()));
-            
-           
+            JTdniProp.setBackground(Color.white);
+            JTsup.setBackground(Color.white);
+            JTdir.setBackground(Color.white);
+             JTprecio.setBackground(Color.white);
+            }
             
 
 // TODO add your handling code here:
@@ -667,13 +745,41 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_JMzonas2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       Propiedad_Inmueble_Data PimData = new Propiedad_Inmueble_Data(conexion);
+       int correctos =2;
+       borraFilasTabla()      ;
+        Propiedad_Inmueble_Data PimData = new Propiedad_Inmueble_Data(conexion);
        ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
         LocalDate testigo =  LocalDate.now();
         String zona = JMzonas2.getSelectedItem().toString();
         String tipo = JMtipo2.getSelectedItem().toString();
-        String supM =JTsup.getText();
+        String supM =JTsuoM.getText();
         String pMax = JTpMax.getText();
+        
+        if(supM.length()==0){
+            supM= "1";
+        }
+        if(pMax.length()==0){
+            pMax="9999999999";
+        }
+        try {
+            Double.parseDouble(supM);
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Superficie debe ser un numero");
+            JTsuoM.setBackground(Color.red);
+            correctos--;
+        }
+            try {
+            Double.parseDouble(pMax);
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Precio maximo debe ser un numero");
+            JTpMax.setBackground(Color.red);
+            correctos--;
+        }
+            if(correctos==2){
+                JTsuoM.setBackground(Color.white);
+                JTpMax.setBackground(Color.white);
        ArrayList<Propiedad_Inmueble> propiedades = PimData.buscarInmPorCaract(tipo, zona, supM, pMax);
       
         for (Propiedad_Inmueble propiedad : propiedades) {
@@ -697,7 +803,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                  modelo.addRow(new Object[]{cod, propiedad.getDireccion(), propiedad.getSuperficie() , propiedad.getPrecio(), disponible});
             }
         }
-       
+            }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -726,6 +832,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
       String direcc = ModDir.getText();
       String nuCod = tipo.substring(0,2)+id;
       InmData.ModificarInmueble(id, nuCod, tipo, zona, pMax, supmin, direcc);
+      limpiarRegistros();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void ModCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModCodActionPerformed
@@ -781,8 +888,27 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
         
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
-        else {JOptionPane.showMessageDialog(this, "Debe elegir un inmueble");}
+         else {JOptionPane.showMessageDialog(this, "Debe elegir un inmueble");}
     }
+    
+    private void JTprecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_JTprecioFocusLost
+        try {
+            Double.parseDouble(JTprecio.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un numero para precio");
+        }
+ // TODO add your handling code here:
+    }//GEN-LAST:event_JTprecioFocusLost
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        limpiarRegistros();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        limpiarRegistros();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+     
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Propiedad_Inmueble> JCinms;
     private javax.swing.JComboBox<tipos> JMtipo;
@@ -806,6 +932,8 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

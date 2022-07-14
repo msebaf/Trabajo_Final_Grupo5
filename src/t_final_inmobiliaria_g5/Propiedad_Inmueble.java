@@ -128,7 +128,7 @@ public class Propiedad_Inmueble {
     //diferencia con la del git en el toString (simon)
     @Override
     public String toString() {
-        return  codigo + ", " + propietario + "," + zona + ", " + direccion + ", " + superficie + ", " + precio ;
+        return  codigo + ", "  + zona + ", " + direccion + ", " + superficie + ", " + precio ;
     }
 
   

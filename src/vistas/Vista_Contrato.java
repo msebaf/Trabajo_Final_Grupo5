@@ -12,6 +12,7 @@ import inmo_data.ContratoAlquilerData;
 import inmo_data.InquilinoData;
 import inmo_data.Propiedad_Inmueble_Data;
 import inmo_data.PropietarioData;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -461,7 +462,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             }
         });
 
-        JBbusXinq.setText("buscar");
+        JBbusXinq.setText("Buscar");
         JBbusXinq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBbusXinqActionPerformed(evt);
@@ -470,7 +471,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Buscar Contratos de Propiedad");
 
-        JBconXpropiedad.setText("buscar");
+        JBconXpropiedad.setText("Buscar");
         JBconXpropiedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBconXpropiedadActionPerformed(evt);
@@ -633,6 +634,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+try{
         Date inicio = JDinicio.getDate();
 ZoneId defaultZoneId = ZoneId.systemDefault();
 Instant instant = inicio.toInstant();
@@ -654,6 +656,7 @@ LocalDate localFinal = instant2
             
         }
         if(disponible){
+            if(localInicio.isAfter(LocalDate.now())){
         ContratoAlquiler nuevoContrato = new ContratoAlquiler(JTvendedor.getText(),(Propiedad_Inmueble) JCpropiedades.getSelectedItem(), (Inquilino) JCinquilinos.getSelectedItem(), localInicio, localFinal);   
         
          System.out.println(nuevoContrato.getFecha_Inicio());
@@ -662,8 +665,14 @@ LocalDate localFinal = instant2
          limpiarRegistros();
         }
         else{
-            JOptionPane.showMessageDialog(this, "Es imposible alquilar en las fechas elegidas");
+            JOptionPane.showMessageDialog(this, "La fecha de inicio del contrato no puede ser anterior a la fecha actual");
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "El inmueble aun participa en otro contrato en la fecha de inicio seleccionada");
+        }
+}catch(NullPointerException ex){
+    JOptionPane.showMessageDialog(this, "Debe seleccionar las fechas de inicio y final del contrato");
+}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -673,7 +682,12 @@ LocalDate localFinal = instant2
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
             ContratoAlquilerData caData = new ContratoAlquilerData(conexion);
              ContratoAlquiler cont =  caData.buscarContrato(JTcodRes.getText());
-             caData.rescindirContrato(cont);
+             try {
+                 caData.rescindirContrato(cont);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "El codigo no corresponde a un contrato vigente");
+        }
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -681,23 +695,38 @@ LocalDate localFinal = instant2
          ContratoAlquilerData caData = new ContratoAlquilerData(conexion);
          ContratoAlquiler cont =  caData.buscarContrato(JTcodB.getText());
           Date nuFinal = JCfin.getDate();
+          if(nuFinal==null){
+           JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha");
+          }
+          else{
           ZoneId defaultZoneId = ZoneId.systemDefault();
           Instant instant = nuFinal.toInstant();
           LocalDate localFinal = instant
                         .atZone(defaultZoneId).toLocalDate();
-         caData.renovarContrato(cont, localFinal);
-         limpiarRegistros();
+         try{
+           caData.renovarContrato(cont, localFinal);
+          
+           limpiarRegistros();
+         }catch(NullPointerException ex){
+             JOptionPane.showMessageDialog(this, "El codigo no corresponde a ningun contrato");
+          
+         }
+         
+          }
          
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void JRBvencidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBvencidosActionPerformed
          borraFilasTabla();
-        if((JRBvencidos.isSelected()&& JRBvigente.isSelected()) || (!JRBvencidos.isSelected()&& !JRBvigente.isSelected())){
+        if((JRBvencidos.isSelected()&& JRBvigente.isSelected()) ){
           for (ContratoAlquiler contrato : contratos) {
              modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
          }
          }
+          else if(!JRBvencidos.isSelected()&& !JRBvigente.isSelected()){
+              borraFilasTabla();
+        }
          else if(JRBvencidos.isSelected()&& !JRBvigente.isSelected()){
              ArrayList<ContratoAlquiler> arrayAuxiliar = new ArrayList<>();
              for (ContratoAlquiler contrato : contratos) {
@@ -789,11 +818,14 @@ LocalDate localFinal = instant2
 
     private void JRBvigenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JRBvigenteActionPerformed
          borraFilasTabla();
-        if((JRBvencidos.isSelected()&& JRBvigente.isSelected()) || (!JRBvencidos.isSelected()&& !JRBvigente.isSelected())){
+        if((JRBvencidos.isSelected()&& JRBvigente.isSelected())){
           for (ContratoAlquiler contrato : contratos) {
              modelo.addRow(new Object[]{contrato.getCodContrato(), contrato.getVendedor(), contrato.getPropiedad().getCodigo() , contrato.getInquilino().getDni(), contrato.getFecha_Inicio(), contrato.getFecha_Final()});
          }
          }
+        else if(!JRBvencidos.isSelected()&& !JRBvigente.isSelected()){
+              borraFilasTabla();
+        }
          else if(JRBvencidos.isSelected()&& !JRBvigente.isSelected()){
              ArrayList<ContratoAlquiler> arrayAuxiliar = new ArrayList<>();
              for (ContratoAlquiler contrato : contratos) {
