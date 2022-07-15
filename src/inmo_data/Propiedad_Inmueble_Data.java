@@ -294,14 +294,14 @@ public class Propiedad_Inmueble_Data {
            
         }
               public Propiedad_Inmueble buscarInmPorCodigo(String codigo){
-            Propiedad_Inmueble inm = new Propiedad_Inmueble();
+            Propiedad_Inmueble inm = null;
             
              String sql = "SELECT * FROM propiedad_inmueble WHERE codigo = \""+codigo+ "\"";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-               
+            if(rs.next()){
+               inm= new  Propiedad_Inmueble();
                 inm.setDireccion(rs.getString("direccion"));
                 
                 inm.setIdPropiedad(rs.getInt("idPropiedad"));

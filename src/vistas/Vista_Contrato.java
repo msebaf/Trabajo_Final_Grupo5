@@ -184,6 +184,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         JBlimpiar2 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        JDchoinegral = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setIconifiable(true);
@@ -499,6 +500,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        JTcontratos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTcontratosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTcontratos);
 
         JRBvigente.setText("Vigentes");
@@ -537,6 +543,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         });
 
         jButton12.setText("Renovar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -544,14 +555,10 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton11)
-                .addGap(67, 67, 67)
                 .addComponent(JRBvigente)
                 .addGap(46, 46, 46)
                 .addComponent(JRBvencidos)
-                .addGap(61, 61, 61)
-                .addComponent(jButton12)
-                .addGap(162, 162, 162))
+                .addGap(296, 296, 296))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -578,6 +585,14 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBlimpiar2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jButton11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton12)
+                .addGap(18, 18, 18)
+                .addComponent(JDchoinegral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -598,14 +613,18 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(JBbusXpropietario))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JRBvencidos)
-                    .addComponent(JRBvigente)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
-                .addGap(32, 32, 32)
+                    .addComponent(JRBvigente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton11)
+                        .addComponent(jButton12))
+                    .addComponent(JDchoinegral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JBlimpiar2)
                 .addGap(42, 42, 42)
                 .addComponent(jButton9)
@@ -662,6 +681,9 @@ ZoneId defaultZoneId2 = ZoneId.systemDefault();
 Instant instant2 = fin.toInstant();
 LocalDate localFinal = instant2
     .atZone(defaultZoneId).toLocalDate();
+if(localFinal.isBefore(localInicio)){
+      JOptionPane.showMessageDialog(this, "La fecha de finalizacion del contrato no puede ser anterior a la fecha de inicio del contrato");
+}else{
         ContratoAlquilerData coAlData = new ContratoAlquilerData(conexion);
         ArrayList<ContratoAlquiler> contratosDelInmueble = coAlData.buscarContratosPorInmueble((Propiedad_Inmueble)JCpropiedades.getSelectedItem());
         boolean disponible = true;
@@ -685,10 +707,11 @@ LocalDate localFinal = instant2
         }
         }else{
             JOptionPane.showMessageDialog(this, "El inmueble aun participa en otro contrato en la fecha de inicio seleccionada");
-        }
+        }}
 }catch(NullPointerException ex){
     JOptionPane.showMessageDialog(this, "Debe seleccionar las fechas de inicio y final del contrato");
 }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -866,10 +889,44 @@ LocalDate localFinal = instant2
              // TODO add your handling code here:
     }//GEN-LAST:event_JRBvigenteActionPerformed
 
+     String alquilarRescindirDesdeTabla ="";
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-           
+           if(!alquilarRescindirDesdeTabla.equals("")){
+               ContratoAlquilerData contData = new ContratoAlquilerData(conexion);
+               contData.rescindirContrato(contData.buscarContrato(alquilarRescindirDesdeTabla));
+               alquilarRescindirDesdeTabla="";
+           }else{JOptionPane.showMessageDialog(this, "No ha seleccionado ningun contrato");}
            
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void JTcontratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTcontratosMouseClicked
+            alquilarRescindirDesdeTabla = (String)JTcontratos.getValueAt(JTcontratos.getSelectedRow(), 0);        // TODO add your handling code here:
+    }//GEN-LAST:event_JTcontratosMouseClicked
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+         if(!alquilarRescindirDesdeTabla.equals("")){        
+        ContratoAlquilerData caData = new ContratoAlquilerData(conexion);
+         ContratoAlquiler cont =  caData.buscarContrato(alquilarRescindirDesdeTabla);
+          Date nuFinal = JDchoinegral.getDate();
+          if(nuFinal==null){
+           JOptionPane.showMessageDialog(this, "Debe seleccionar una fecha");
+          }
+          else{
+          ZoneId defaultZoneId = ZoneId.systemDefault();
+          Instant instant = nuFinal.toInstant();
+          LocalDate localFinal = instant
+                        .atZone(defaultZoneId).toLocalDate();
+         try{
+           caData.renovarContrato(cont, localFinal);
+           alquilarRescindirDesdeTabla ="";
+           limpiarRegistros();
+         }catch(NullPointerException ex){
+             JOptionPane.showMessageDialog(this, "El codigo no corresponde a ningun contrato");
+          
+         } 
+          }
+         }else{JOptionPane.showMessageDialog(this, "No ha seleccionado ningun contrato");}
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     public void setJTcodBusc(JTextField JTcodBusc) {
         this.JTcodBusc = JTcodBusc;
@@ -900,6 +957,7 @@ LocalDate localFinal = instant2
     private javax.swing.JComboBox<Propiedad_Inmueble> JCpropiedades;
     private javax.swing.JComboBox<Propiedad_Inmueble> JCpropiedades2;
     private javax.swing.JComboBox<Propietario> JCpropietarios;
+    private com.toedter.calendar.JDateChooser JDchoinegral;
     private com.toedter.calendar.JDateChooser JDfinal;
     private com.toedter.calendar.JDateChooser JDinicio;
     private javax.swing.JRadioButton JRBvencidos;

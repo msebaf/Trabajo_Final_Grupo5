@@ -74,7 +74,9 @@ public class ContratoAlquilerData {
    
           public void rescindirContrato(ContratoAlquiler contrato){
             LocalDate date = LocalDate.now().minusDays(1);
-           
+           if(contrato.getFecha_Final().isBefore(LocalDate.now())){
+               JOptionPane.showMessageDialog(null, "El contrato vencio en " + contrato.getFecha_Final());
+           }else{
            
             Date fFinal = Date.valueOf(date);
               System.out.println(fFinal.toString());
@@ -88,7 +90,7 @@ public class ContratoAlquilerData {
           } catch (SQLException ex) {
               Logger.getLogger(ContratoAlquilerData.class.getName()).log(Level.SEVERE, null, ex);
           }
-            
+           }
           }
           
           public void renovarContrato(ContratoAlquiler contrato, LocalDate nuevoFinal){

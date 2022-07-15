@@ -569,61 +569,63 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(247, 247, 247)
-                                .addComponent(jLabel16))
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel11)
+                                .addGap(43, 43, 43)
+                                .addComponent(ModCod, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(96, 96, 96)
+                                .addComponent(jButton5))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(171, 171, 171)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ModPrecio)
-                                    .addComponent(ModSup)
-                                    .addComponent(ModDir)
-                                    .addComponent(ModTipo, 0, 195, Short.MAX_VALUE)
-                                    .addComponent(ModZona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(239, 239, 239)
-                                .addComponent(jLabel15))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(257, 257, 257)
-                                .addComponent(jLabel13))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(87, 87, 87)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(243, 243, 243)
-                                .addComponent(jLabel14))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(255, 255, 255)
-                                .addComponent(jLabel12)))
-                        .addGap(0, 210, Short.MAX_VALUE)))
+                                .addGap(139, 139, 139)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(113, 113, 113)
+                                        .addComponent(jLabel16))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(ModPrecio)
+                                            .addComponent(ModSup)
+                                            .addComponent(ModDir)
+                                            .addComponent(ModTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(ModZona, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(105, 105, 105)
+                                        .addComponent(jLabel15))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(123, 123, 123)
+                                        .addComponent(jLabel13))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(87, 87, 87)
+                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(109, 109, 109)
+                                        .addComponent(jLabel14))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(121, 121, 121)
+                                        .addComponent(jLabel12)))))
+                        .addGap(0, 148, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel11)
-                .addGap(55, 55, 55)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JCinms, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ModCod, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(67, 67, 67))
+                .addGap(160, 160, 160)
+                .addComponent(JCinms, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addComponent(JCinms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ModCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11))
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ModCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5)
+                    .addComponent(jLabel11))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -650,7 +652,7 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton7))
-                .addGap(20, 20, 20))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Modificar Inm", jPanel3);
@@ -823,8 +825,39 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Propiedad_Inmueble_Data InmData= new Propiedad_Inmueble_Data(conexion); 
-      Propiedad_Inmueble prop = InmData.buscarInmPorCodigo(ModCod.getText().toUpperCase());
+        Propiedad_Inmueble_Data InmData= new Propiedad_Inmueble_Data(conexion);
+        int cuentaCampos=3;
+      /*  if(ModSup.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Debe completar el campo superficie");
+        cuentaCampos--;
+        ModSup.setBackground(Color.red);
+        }*/
+        if(ModDir.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe completar el campo direccion");
+        cuentaCampos--;
+        ModDir.setBackground(Color.red);
+        }  
+      /*  if(ModPrecio.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe completar el campo direccion");
+        cuentaCampos--;
+        ModPrecio.setBackground(Color.red);
+        }*/
+        try {
+            Double.parseDouble(ModSup.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Superficie debe ser un numero");
+             ModSup.setBackground(Color.red);
+            cuentaCampos--;
+        }
+         try {
+            Double.parseDouble(ModPrecio.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Precio debe ser un numero");
+            ModPrecio.setBackground(Color.red);
+            cuentaCampos--;
+        }
+         if(cuentaCampos==3){
+      Propiedad_Inmueble prop = (Propiedad_Inmueble)JCinms.getSelectedItem();
       int id = prop.getIdPropiedad();
       String zona = ModZona.getSelectedItem().toString();
       String tipo = ModTipo.getSelectedItem().toString();
@@ -833,7 +866,11 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
       String direcc = ModDir.getText();
       String nuCod = tipo.substring(0,2)+id;
       InmData.ModificarInmueble(id, nuCod, tipo, zona, pMax, supmin, direcc);
+      ModDir.setBackground(Color.white);
+      ModSup.setBackground(Color.white);
+      ModPrecio.setBackground(Color.white);
       limpiarRegistros();
+         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void ModCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModCodActionPerformed
@@ -842,8 +879,15 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         Propiedad_Inmueble_Data pData = new Propiedad_Inmueble_Data(conexion);
+        Propiedad_Inmueble propValidacion = pData.buscarInmPorCodigo(codBorrar.getText());
+        try{
+        String cod= propValidacion.getCodigo();
+        
         pData.borrarImueble(codBorrar.getText()); 
         JOptionPane.showMessageDialog(this, "El inmueble ya no esta activo en el sistema");// TODO add your handling code here:
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(this, "El inmueble no existe");
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -852,8 +896,16 @@ public class Vista_FormPropiedad extends javax.swing.JInternalFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
              Propiedad_Inmueble_Data pData = new Propiedad_Inmueble_Data(conexion);
-        pData.reactivarrImueble(codBorrar.getText()); 
+             Propiedad_Inmueble propValidacion = pData.buscarInmPorCodigo(codBorrar.getText());
+        try{
+        String cod= propValidacion.getCodigo();
+             
+             pData.reactivarrImueble(codBorrar.getText()); 
         JOptionPane.showMessageDialog(this, "El inmueble se ha activado");        // TODO add your handling code here:
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(this, "El inmueble no existe");
+        }
+        
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void JCinmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCinmsActionPerformed
