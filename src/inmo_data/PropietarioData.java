@@ -104,7 +104,7 @@ public class PropietarioData {
         Propietario prop = null;
         
         try {
-            String sql = "SELECT * FROM propietario WHERE dni =? AND activo = 1" ;
+            String sql = "SELECT * FROM propietario WHERE dni =? " ;
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1,dni);
             ResultSet rs = ps.executeQuery();

@@ -123,7 +123,7 @@ public class Propiedad_Inmueble_Data {
         public ArrayList<Propiedad_Inmueble> ListarPropiedades(PropietarioData proData){
             ArrayList<Propiedad_Inmueble> disponibles = new ArrayList<>();
           
-             String sql = "SELECT * FROM propiedad_inmueble" ;
+             String sql = "SELECT * FROM propiedad_inmueble where vigente = 1" ;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

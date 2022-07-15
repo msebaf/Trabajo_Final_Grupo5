@@ -930,10 +930,16 @@ if(localFinal.isBefore(localInicio)){
           Instant instant = nuFinal.toInstant();
           LocalDate localFinal = instant
                         .atZone(defaultZoneId).toLocalDate();
+          
          try{
+               if(localFinal.isBefore(cont.getFecha_Final())){
+           JOptionPane.showMessageDialog(this, "La renovacion no puede terminar antes que el contrato original");
+         }   else{
            caData.renovarContrato(cont, localFinal);
+         
            alquilarRescindirDesdeTabla ="";
            limpiarRegistros();
+               }
          }catch(NullPointerException ex){
              JOptionPane.showMessageDialog(this, "El codigo no corresponde a ningun contrato");
           
