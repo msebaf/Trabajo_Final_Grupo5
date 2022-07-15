@@ -5,6 +5,13 @@
  */
 package vistas;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import conexion.Conexion;
@@ -13,6 +20,8 @@ import inmo_data.InquilinoData;
 import inmo_data.Propiedad_Inmueble_Data;
 import inmo_data.PropietarioData;
 import java.awt.Color;
+import java.awt.Font;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -185,6 +194,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         JDchoinegral = new com.toedter.calendar.JDateChooser();
+        jButton13 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -549,6 +559,13 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton13.setText("jButton13");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -584,6 +601,8 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBlimpiar2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(133, 133, 133)
+                .addComponent(jButton13)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
@@ -626,8 +645,13 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addComponent(JDchoinegral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JBlimpiar2)
-                .addGap(42, 42, 42)
-                .addComponent(jButton9)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton9))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jButton13)))
                 .addGap(71, 71, 71))
         );
 
@@ -928,6 +952,80 @@ if(localFinal.isBefore(localInicio)){
          }else{JOptionPane.showMessageDialog(this, "No ha seleccionado ningun contrato");}
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+       
+        Document documento = new Document();
+        ContratoAlquiler cont=null;
+        ContratoAlquilerData contData= new ContratoAlquilerData(conexion);
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/" + "contratos"+".pdf"));
+
+            com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/image/BannerPDF.jpg");
+            header.scaleToFit(650,1000);
+            header.setAlignment(Chunk.ALIGN_CENTER);
+
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("Contratos \n \n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
+
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+            
+            PdfPTable tablaCliente = new PdfPTable(6);
+            tablaCliente.addCell("CodigoInterno");
+            tablaCliente.addCell("Vendedor");
+            tablaCliente.addCell("CodigoPropiedad");
+            tablaCliente.addCell("DNIinquilino");
+            tablaCliente.addCell("FechaInicio");
+            tablaCliente.addCell("FechaFinal");
+            int cantidad = JTcontratos.getRowCount();
+            while(cantidad>=0){
+                cont = contData.buscarContrato((String)JTcontratos.getValueAt(cantidad, 0));
+            tablaCliente.addCell(cont.getCodContrato());
+            tablaCliente.addCell(cont.getVendedor());
+            tablaCliente.addCell(cont.getPropiedad().getCodigo()+"");
+            tablaCliente.addCell(cont.getInquilino().getDni()+"");
+            tablaCliente.addCell(cont.getFecha_Inicio()+"");
+             tablaCliente.addCell(cont.getFecha_Final()+"");
+            documento.add(tablaCliente);
+            }
+
+         /*   Paragraph parrafo2 = new Paragraph();
+            parrafo2.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo2.add("\n \n Propiedades Alquiladas \n\n");
+            parrafo2.setFont(FontFactory.getFont("Tahoma",14,Font.BOLD, BaseColor.DARK_GRAY));
+
+            documento.add(parrafo2);
+
+            PdfPTable tablaPropiedades = new PdfPTable(4);
+            tablaPropiedades.addCell("codContrato");
+            tablaPropiedades.addCell("idPropiedad");
+            tablaPropiedades.addCell("Caracteristica");
+            tablaPropiedades.addCell("Dirección");
+
+            for(ContratoAlquiler p : listaContratos){
+                //System.out.println("ver contrato id Inquilno"+p.toString());//chequeo de datos
+                if(p.getInquilino().getIdInquilino() == inq.getIdInquilino()){
+
+                    tablaPropiedades.addCell(p.getCodContrato());
+                    tablaPropiedades.addCell(p.getPropiedad().getIdPropiedad()+"");
+                    tablaPropiedades.addCell(p.getPropiedad().getTipo());
+                    tablaPropiedades.addCell(p.getPropiedad().getDireccion());
+                }
+            }
+
+            documento.add(tablaPropiedades);*/
+            JOptionPane.showMessageDialog(this,"El documento se encuentra en Escritorio");
+            documento.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error al imprimir el documeto");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     public void setJTcodBusc(JTextField JTcodBusc) {
         this.JTcodBusc = JTcodBusc;
     }
@@ -975,6 +1073,7 @@ if(localFinal.isBefore(localInicio)){
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

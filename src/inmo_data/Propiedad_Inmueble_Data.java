@@ -202,7 +202,7 @@ public class Propiedad_Inmueble_Data {
                 precioMaximo ="999999999999999999999999999";
             }
             
-             String sql = "SELECT * FROM propiedad_inmueble WHERE zona = \""+zona+"\" AND tipo = \""+uso+"\" AND superficie > "+supMinima+ " AND precio < "+ precioMaximo + " AND vigente = true" ;
+             String sql = "SELECT * FROM propiedad_inmueble WHERE zona = \""+zona+"\" AND tipo = \""+uso+"\" AND superficie >= "+supMinima+ " AND precio <= "+ precioMaximo + " AND vigente = true" ;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
