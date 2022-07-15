@@ -194,6 +194,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         JDchoinegral = new com.toedter.calendar.JDateChooser();
+        jBImprimir = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -305,7 +306,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)))
                 .addGap(13, 13, 13)
                 .addComponent(jLabel4)
-                .addGap(201, 201, Short.MAX_VALUE))
+                .addGap(219, 219, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +385,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addContainerGap(416, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,7 +398,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addComponent(jButton5)
                 .addGap(46, 46, 46)
                 .addComponent(jButton8)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(351, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Rescindir Contrato", jPanel2);
@@ -439,7 +440,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(JCfin, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +455,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                 .addComponent(jButton6)
                 .addGap(39, 39, 39)
                 .addComponent(jButton7)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Renovar Contrato", jPanel3);
@@ -553,18 +554,27 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
             }
         });
 
+        jBImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Quickprinting_printing_6313.png"))); // NOI18N
+        jBImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(255, 255, 255)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JBlimpiar2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JBlimpiar2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addComponent(jButton11)
@@ -593,7 +603,7 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                                 .addComponent(JBbusXinq)
                                 .addComponent(JBconXpropiedad)
                                 .addComponent(JBbusXpropietario)))))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -614,7 +624,12 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                     .addComponent(jLabel15)
                     .addComponent(JBbusXpropietario))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jBImprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -625,14 +640,12 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
                             .addComponent(JDchoinegral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JBlimpiar2)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton9))
+                        .addGap(97, 97, 97))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(JRBvigente)
                             .addComponent(JRBvencidos))
-                        .addGap(111, 111, 111)))
-                .addGap(49, 49, 49))
+                        .addGap(160, 160, 160))))
         );
 
         jTabbedPane1.addTab("Buscar Contrato", jPanel4);
@@ -641,14 +654,11 @@ public class Vista_Contrato extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -932,6 +942,96 @@ if(localFinal.isBefore(localInicio)){
          }else{JOptionPane.showMessageDialog(this, "No ha seleccionado ningun contrato");}
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jBImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImprimirActionPerformed
+        // TODO add your handling code here:
+         Inquilino inq =(Inquilino)JCinqui2.getSelectedItem();
+      Propiedad_Inmueble p_Inmu = (Propiedad_Inmueble)JCpropiedades2.getSelectedItem();
+      Propietario prop =(Propietario)JCpropietarios.getSelectedItem();  
+       Document documento = new Document();
+       
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/" + prop.getNombrePropietario().trim()+".pdf"));
+            
+           com.itextpdf.text.Image header = com.itextpdf.text.Image.getInstance("src/image/BannerPDF.jpg");
+           header.scaleToFit(650,1000);
+           header.setAlignment(Chunk.ALIGN_CENTER);
+           
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("información Del Cliente. \n \n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 14, Font.BOLD, BaseColor.DARK_GRAY));
+            
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+            
+           PdfPTable tablaCliente = new PdfPTable(4);
+            tablaCliente.addCell("CodigoInterno");
+            tablaCliente.addCell("Nombre");
+            tablaCliente.addCell("Apellido");
+            tablaCliente.addCell("Dni");
+            
+            tablaCliente.addCell(inq.getIdInquilino()+"");
+            tablaCliente.addCell(inq.getNombre());
+            tablaCliente.addCell(inq.getApellido());
+            tablaCliente.addCell(inq.getDni()+"");
+            documento.add(tablaCliente);
+            
+            Paragraph parrafo2 = new Paragraph();
+            parrafo2.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo2.add("\n \n información Del Propietario \n\n");
+            parrafo2.setFont(FontFactory.getFont("Tahoma",14,Font.BOLD, BaseColor.DARK_GRAY));
+            documento.add(parrafo2); 
+            
+            PdfPTable tablaPropietario = new PdfPTable(4);
+            tablaPropietario.addCell("CodigoInterno");
+            tablaPropietario.addCell("Nombre");
+            tablaPropietario.addCell("Apellido");
+            tablaPropietario.addCell("Dni"); 
+            
+            tablaPropietario.addCell(prop.getIdPropietario()+"");
+            tablaPropietario.addCell(prop.getNombrePropietario());
+            tablaPropietario.addCell(prop.getApellidoPropietario());
+            tablaPropietario.addCell(prop.getDNI()+"");            
+            documento.add(tablaPropietario);
+            
+             Paragraph parrafo3 = new Paragraph();
+            parrafo3.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo3.add("\n \n información De Propiedades \n\n");
+            parrafo3.setFont(FontFactory.getFont("Tahoma",14,Font.BOLD, BaseColor.DARK_GRAY));
+            documento.add(parrafo3); 
+            
+            PdfPTable tablaContratos = new PdfPTable(6);
+            tablaContratos.addCell("cod");
+            tablaContratos.addCell("Vendedor");           
+            tablaContratos.addCell("codPropiedad");    
+            tablaContratos.addCell("DniCliente"); 
+            tablaContratos.addCell("F.Inicio");
+            tablaContratos.addCell("F.Final");
+            
+            for (ContratoAlquiler contrato : contratos) {
+                
+            if(contrato.getInquilino().getIdInquilino()== inq.getIdInquilino() && contrato.getPropiedad().getIdPropiedad()== p_Inmu.getIdPropiedad()){
+            tablaContratos.addCell(contrato.getCodContrato());
+            tablaContratos.addCell(contrato.getVendedor());
+            tablaContratos.addCell(contrato.getPropiedad().getCodigo());
+            tablaContratos.addCell(contrato.getInquilino().getDni()+"");
+            tablaContratos.addCell(contrato.getFecha_Inicio()+"");
+            tablaContratos.addCell(contrato.getFecha_Final()+"");   
+            
+           }
+        }  
+        documento.add(tablaContratos);    
+        JOptionPane.showMessageDialog(this,"El documento se encuentra en Escritorio");
+          documento.close();     
+            
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,"Error al imprimir el documeto");    
+        }
+        
+    }//GEN-LAST:event_jBImprimirActionPerformed
+
     public void setJTcodBusc(JTextField JTcodBusc) {
         this.JTcodBusc = JTcodBusc;
     }
@@ -975,6 +1075,7 @@ if(localFinal.isBefore(localInicio)){
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.JButton jBImprimir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

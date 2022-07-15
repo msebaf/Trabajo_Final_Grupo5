@@ -183,7 +183,7 @@
                               <Component id="jLbApellidoGarante" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="JTapellido_garante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="82" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jBGuardar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="jButton2" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
@@ -384,70 +384,67 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jTIdModificar" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jbActualizar" min="-2" pref="128" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jbLimpiarModificar" min="-2" pref="128" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jbBorrarModificar" min="-2" pref="128" max="-2" attributes="0"/>
-                      <EmptySpace pref="57" max="32767" attributes="0"/>
-                      <Component id="jbSalirModificar" min="-2" pref="134" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLbApellido5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLbNombre5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLbCuit5" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
+                                  <Component id="jLbTelefono5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLbTrabajo5" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="jLbDni5" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jChBActivoM" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JTtrabajoModificar" alignment="0" pref="252" max="32767" attributes="0"/>
+                                  <Component id="JTdniModifcar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JTapellidoModificar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JTnombreModificar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JTtelefonoModificar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JTcuit_dniModificar" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jbBuscarModifica" min="-2" pref="52" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jTIdModificar" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="jbActualizar" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jbLimpiarModificar" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jbBorrarModificar" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="jbSalirModificar" min="-2" pref="134" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLbApellidoGarante1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLbNombreGarante1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLbDniGarante1" min="-2" pref="28" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="JTapellido_garanteModificar" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                          <Component id="JTdni_garanteModificar" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                          <Component id="JTnombre_garanteModificar" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLbApellido5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLbNombre5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLbCuit5" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
-                                          <Component id="jLbTelefono5" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jLbTrabajo5" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                          <Component id="jLbDni5" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jChBActivoM" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JTtrabajoModificar" alignment="0" pref="252" max="32767" attributes="0"/>
-                                          <Component id="JTdniModifcar" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JTapellidoModificar" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JTnombreModificar" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JTtelefonoModificar" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="JTcuit_dniModificar" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jbBuscarModifica" min="-2" pref="52" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" pref="215" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLbApellidoGarante1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLbNombreGarante1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLbDniGarante1" min="-2" pref="28" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JTapellido_garanteModificar" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="JTdni_garanteModificar" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Component id="JTnombre_garanteModificar" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -466,7 +463,7 @@
                                   <Component id="jLbApellido5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="JTapellidoModificar" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="JTnombreModificar" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLbNombre5" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -486,8 +483,11 @@
                                   <Component id="jLbTrabajo5" min="-2" max="-2" attributes="0"/>
                                   <Component id="JTtrabajoModificar" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="jChBActivoM" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jChBActivoM" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTIdModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -505,7 +505,7 @@
                                   <Component id="JTapellido_garanteModificar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="jLbApellidoGarante1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="62" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jbActualizar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="jbLimpiarModificar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
@@ -516,8 +516,6 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jbBuscarModifica" min="-2" pref="41" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
-                              <Component id="jTIdModificar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -757,7 +755,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="41" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jCBInquilino" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>

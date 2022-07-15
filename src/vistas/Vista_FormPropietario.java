@@ -203,7 +203,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(JTdomicilio)
                             .addComponent(JTnombre)
@@ -242,7 +242,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                         .addComponent(JTdomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(jChBActivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -338,15 +338,11 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(37, 37, 37)
                 .addComponent(jActualizarModicar1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jbLimpiarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBorrarModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addGap(390, 390, 390))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,25 +353,26 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                     .addComponent(jLbDomicilio2))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jChBActivoMod)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jChBActivoMod)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(JTdomicilioModificar)
-                            .addComponent(JTtelefonoModificar)
-                            .addComponent(JTapellidoModificar)
-                            .addComponent(JTnombreModificar)
-                            .addComponent(JTdniModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBorrarModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(JTdomicilioModificar)
+                                .addComponent(JTtelefonoModificar)
+                                .addComponent(JTapellidoModificar)
+                                .addComponent(JTnombreModificar)
+                                .addComponent(JTdniModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(jB_buscarModificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTIdModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90))))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jB_buscarModificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTIdModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 0, 0))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,19 +397,19 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                     .addComponent(JTnombreModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLbDomicilio2)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLbDomicilio2)
-                        .addComponent(jTIdModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JTdomicilioModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                        .addComponent(JTdomicilioModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTIdModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
                 .addComponent(jChBActivoMod)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBorrarModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jActualizarModicar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLimpiarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                    .addComponent(jbLimpiarModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBorrarModicar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75))
         );
 
         jTabbedPane1.addTab("Modificar Propietario", jPanel3);
@@ -472,8 +469,8 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                                 .addContainerGap()
                                 .addComponent(jBSalirLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,16 +479,14 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
                         .addComponent(jBImprimir1)
                         .addGap(94, 94, 94)
                         .addComponent(jBSalirLista, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Lista de Propiedades", jPanel5);
@@ -500,13 +495,13 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -555,13 +550,7 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         int validacion =0;
         Propietario prop = new Propietario();
-        prop.setDNI(Long.parseLong(JTdni.getText()));
-        prop.setTelefono(Long.parseLong(JTtelefono.getText()));
-        prop.setApellidoPropietario(JTapellido.getText());
-        prop.setNombrePropietario(JTnombre.getText());
-        prop.setDomicilio(JTdomicilio.getText());      
         
-        prop.setEstado(jChBActivo.isSelected());
         
           if (JTdni.getText().equals("")) {
             JTdni.setBackground(Color.red);
@@ -588,6 +577,13 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
         }
         
          if(validacion == 0 ){
+         prop.setDNI(Long.parseLong(JTdni.getText()));
+        prop.setTelefono(Long.parseLong(JTtelefono.getText()));
+        prop.setApellidoPropietario(JTapellido.getText());
+        prop.setNombrePropietario(JTnombre.getText());
+        prop.setDomicilio(JTdomicilio.getText());     
+        
+        prop.setEstado(jChBActivo.isSelected());
        
         PropietarioData propietarioData = new PropietarioData(conexion);
         propietarioData.cargarPropietario(prop);
@@ -762,21 +758,62 @@ public class Vista_FormPropietario extends javax.swing.JInternalFrame {
     private void jActualizarModicar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jActualizarModicar1ActionPerformed
         // TODO add your handling code here:
        long dni=-1,tel=-1;
-    int idP=-1;
+    int idP=-1,validacion=0;
+    
     dni =Integer.parseInt(JTdniModificar.getText().trim());
     tel =Integer.parseInt(JTtelefonoModificar.getText().trim());
     String ape = JTapellidoModificar.getText().trim();
     String nomb = JTnombreModificar.getText().trim();
     String dom = JTdomicilioModificar.getText().trim();
     idP = Integer.parseInt(jTIdModificar.getText().trim());
-    boolean activo = jChBActivoMod.isSelected();
+    boolean activo = jChBActivoMod.isSelected();    
+    
+    
+     if (JTdniModificar.getText().equals("")) {
+            JTdniModificar.setBackground(Color.red);
+            validacion++;
+     } 
+     if (JTtelefonoModificar.getText().equals("")) {
+            JTtelefonoModificar.setBackground(Color.red);
+            validacion++;
+     }
+     if (JTapellidoModificar.getText().equals("")) {
+            JTapellidoModificar.setBackground(Color.red);
+            validacion++;
+     }
+      if (JTdomicilioModificar.getText().equals("")) {
+            JTdomicilioModificar.setBackground(Color.red);
+            validacion++;
+     }
+     if (jTIdModificar.getText().equals("")) {
+            jTIdModificar.setBackground(Color.red);
+            validacion++;
+     } 
+     if (jTIdModificar.getText().equals("")) {
+            jTIdModificar.setBackground(Color.red);
+            validacion++;
+     } 
+    
+     if(validacion == 0 ){       
+ 
     
     Propietario propietario = new Propietario(idP,dni, tel, ape, nomb, dom,activo);
     
     if(propietarioData.modificarPropietario(propietario)){
         JOptionPane.showMessageDialog(this,"Cliente Modifcado Exitosamente");
+        
+         JTdniModificar.setBackground(Color.LIGHT_GRAY);
+         JTtelefonoModificar.setBackground(Color.LIGHT_GRAY);
+         JTtelefonoModificar.setBackground(Color.LIGHT_GRAY);
+         JTapellidoModificar.setBackground(Color.LIGHT_GRAY);
+         JTdomicilioModificar.setBackground(Color.LIGHT_GRAY);
+         jTIdModificar.setBackground(Color.white);
+        
         limpiarCamposModificar(); 
-    }     
+    }
+     }else{
+        JOptionPane.showMessageDialog(this, "Debes completar Todos los campos"); 
+     }
         
     }//GEN-LAST:event_jActualizarModicar1ActionPerformed
 
